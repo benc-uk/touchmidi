@@ -1,0 +1,7 @@
+# How I like my code :)
+tabWidth: 2
+semi: false
+singleQuote: true
+bracketSpacing: true
+trailingComma: none
+printWidth: 150
