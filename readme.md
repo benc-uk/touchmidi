@@ -1,11 +1,5 @@
-# Controls
+# Touch MIDI v2
 
-## Slider
+A rewrite of my TouchMIDI project https://github.com/benc-uk/touchmidi using web components, ES6 modules and a cleaner design.
 
-- CC
-- NRPN
-
-## Encoder
-
-- CC
-- NRPN
+Very, very work in progress
