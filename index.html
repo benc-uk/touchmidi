@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
     <title>Touch Midi</title>
-    <!-- Do not remove -->
+    <!-- Do not remove! -->
     <script type="module" src="lib/touchmidi.js"></script>
-    <style>
-      body {
-        touch-action: none;
-      }
-    </style>
   </head>
   <body>
     <group-row>
       <midi-slider cc="1" colour="#11ccff"></midi-slider>
       <midi-slider cc="2" colour="#ff3333"></midi-slider>
-      <midi-slider cc="3" colour="#22ff00"></midi-slider>
-      <midi-slider cc="4" colour="#ffee22"></midi-slider>
+      <midi-slider cc="3" colour="#11ff11"></midi-slider>
+    </group-row>
+    <group-row>
+      <midi-encoder cc="1" colour="#11ccff"></midi-encoder>
+      <midi-encoder cc="2" colour="#ff3333"></midi-encoder>
+      <midi-encoder cc="3" colour="#11ff11"></midi-encoder>
+      <midi-encoder cc="3" colour="#11ff11"></midi-encoder>
     </group-row>
   </body>
 </html>
