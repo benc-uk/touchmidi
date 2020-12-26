@@ -9,15 +9,17 @@
   </head>
   <body>
     <group-row>
-      <midi-slider cc="1" colour="#11ccff"></midi-slider>
-      <midi-slider cc="2" colour="#ff3333"></midi-slider>
-      <midi-slider cc="3" colour="#11ff11"></midi-slider>
+      <midi-slider label="osc:%t\nf:%c\n%v\n%p%" cc="88" colour="#11ccff" chan="5"></midi-slider>
+      <midi-slider cc="23" colour="LawnGreen"></midi-slider>
+      <midi-slider cc="3" min="40" max="45" value="77"></midi-slider>
+      <midi-button cc="3" colour="hotpink" label="blah\nfoo\n%c"></midi-button>
+      <midi-button cc="3" label="test"></midi-button>
     </group-row>
     <group-row>
-      <midi-encoder cc="1" colour="#11ccff"></midi-encoder>
-      <midi-encoder cc="2" colour="#ff3333"></midi-encoder>
-      <midi-encoder cc="3" colour="#11ff11"></midi-encoder>
-      <midi-encoder cc="3" colour="#11ff11"></midi-encoder>
+      <midi-encoder cc="1"></midi-encoder>
+      <midi-encoder cc="2" colour="blue"></midi-encoder>
+      <midi-encoder cc="3" colour="lime" label="%v\n%p%" min="30" max="90"></midi-encoder>
+      <midi-encoder cc="3" colour="DeepSkyBlue"></midi-encoder>
     </group-row>
   </body>
 </html>
