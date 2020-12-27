@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+    <title>Touch Midi</title>
+    <!-- Do not remove! -->
+    <script type="module" src="lib/touchmidi.js"></script>
+  </head>
+  <body>
+    <group-row>
+      <midi-slider cc="71"></midi-slider>
+      <midi-slider cc="72"></midi-slider>
+      <midi-slider cc="73"></midi-slider>
+    </group-row>
+    <group-row>
+      <midi-encoder cc="41"></midi-encoder>
+      <midi-encoder cc="42"></midi-encoder>
+      <midi-encoder cc="43"></midi-encoder>
+    </group-row>
+    <group-row>
+      <midi-slider cc="51" colour="blue"></midi-slider>
+      <midi-slider cc="52" colour="pink"></midi-slider>
+      <midi-slider cc="53" colour="lime"></midi-slider>
+      <midi-slider cc="54" colour="hotpink"></midi-slider>
+      <midi-slider cc="55" colour="#ffff00"></midi-slider>
+      <midi-slider cc="56" colour="#00ffff"></midi-slider>
+      <midi-slider cc="57" colour="#FF8C00"></midi-slider>
+    </group-row>
+  </body>
+</html>
