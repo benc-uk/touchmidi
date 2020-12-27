@@ -5,25 +5,24 @@
 }
 
 svg {
-  width: 100%;
   height: 100%;
+  margin: 0 auto;
 }
 
 div {
-  color: white;
-  font-size: 5vw;
-  display: flex;
-  flex: 1 1;
+  flex: auto;
   justify-content: center;
+  display: flex;
   align-items: center;
+  text-align: center;
   cursor: pointer;
   overflow: hidden;
   user-select: none;
   position: relative;
-  margin: auto;
 }
 
 .label {
+  font-size: 8vmin;
   position: absolute;
   z-index: 40;
   left: 50%;

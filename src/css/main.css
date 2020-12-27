@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: hidden;
-  color: var(--grey);
+  color: white;
   background-color: var(--bg);
   font-family: var(--font);
   touch-action: none;

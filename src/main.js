@@ -25,7 +25,7 @@ let activeWidgets = []
 // The main entry point is here
 window.addEventListener('load', async () => {
   await pageSetup()
-  //midi.init()
+  midi.init()
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it

@@ -5,7 +5,7 @@ import css from './button.css'
 
 function eventReleased(host, evt) {
   evt.preventDefault()
-  if (!host.toggle) {
+  if (!host.toggle && host._pressed) {
     host._pressed = false
 
     if (host.note) {
@@ -55,11 +55,16 @@ export const Component = {
 
   // Display & UX properties
   colour: property('#ffffff'),
-  label: '',
+  label: '__unset__',
   toggle: false,
 
-  render: ({ label, colour, _pressed, chan, cc }) => {
+  render: ({ label, colour, _pressed, chan, cc, note }) => {
     const bg = _pressed ? `${darkenColour(colour)}` : 'var(--bg)'
+
+    // Default label is to show the value
+    if (label === '__unset__') {
+      label = '%n'
+    }
 
     const newStyle = `button {
       background-color: ${bg};
@@ -72,7 +77,8 @@ export const Component = {
       ontouchend="${eventReleased}"
       onmousedown="${eventPressed}"
       ontouchstart="${eventPressed}"
-      innerHTML="${formatLabel(label, '', '', chan, cc)}"
+      onmouseleave="${eventReleased}"
+      innerHTML="${formatLabel(label, '', '', chan, cc, note)}"
     ></button>`.style(css, newStyle)
   }
 }

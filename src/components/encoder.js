@@ -54,12 +54,13 @@ export const Component = {
       midi.sendNRPN(nrpn, chan, value, max > 127)
     }
 
+    //return html`<div class="knob">BUM</div>`.style(css)
     return html`<div>
-      <svg viewBox="0 0 36 36" preserveAspectRatio="xMaxYMid meet">
+      <svg viewBox="0 0 36 36">
         <path
           d="M18 2.0
-a 16 16 0 0 1 0 32
-a 16 16 0 0 1 0 -32"
+    a 16 16 0 0 1 0 32
+    a 16 16 0 0 1 0 -32"
           fill="none"
           stroke="${colour}"
           stroke-opacity="0.3"
@@ -70,8 +71,8 @@ a 16 16 0 0 1 0 -32"
         />
         <path
           d="M18 2.0
-a 16 16 0 0 1 0 32
-a 16 16 0 0 1 0 -32"
+    a 16 16 0 0 1 0 32
+    a 16 16 0 0 1 0 -32"
           fill="none"
           stroke="${colour}"
           stroke-width="0.25rem"
