@@ -1,0 +1,19 @@
+{
+  "name": "touchmidi",
+  "version": "2.0.0",
+  "description": "A flexible MIDI control surface for touch based devices.   A rewrite of my TouchMIDI project https://github.com/benc-uk/touchmidi using web components, ES6 modules and a cleaner design.",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benc-uk/touchmidi2.git"
+  },
+  "author": "Ben Coleman",
+  "license": "MIT",
+  "homepage": "https://github.com/benc-uk/touchmidi2#readme",
+  "devDependencies": {
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.3.0"
+  }
+}
