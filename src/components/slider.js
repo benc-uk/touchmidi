@@ -1,6 +1,7 @@
-import { html, define, property } from '../hybridsjs/index.js'
+import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
 import { darkenColour, formatLabel } from '../utils.js'
+import css from './slider.css'
 
 export const Component = {
   // Private internal properties
@@ -65,26 +66,3 @@ export const Component = {
 }
 
 define('midi-slider', Component)
-
-const css = `
-  :host {
-    flex: 1 1;
-    display: flex;
-    margin: var(--spacing);
-  }
-  div {
-    font-size: 4vw;
-    display: flex;
-    flex: 1 1;
-    border: var(--b-width) solid;
-    border-radius: var(--b-radius);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    line-height: 0.9em;
-    cursor: pointer;
-    overflow: hidden;
-    width: 1px;
-    user-select: none;
-  }
-`

@@ -1,6 +1,7 @@
-import { html, define, property } from '../hybridsjs/index.js'
+import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
 import { formatLabel } from '../utils.js'
+import css from './encoder.css'
 
 export const Component = {
   // Private internal properties
@@ -85,37 +86,3 @@ a 16 16 0 0 1 0 -32"
 }
 
 define('midi-encoder', Component)
-
-const css = `
-  :host {
-    flex: 1 1;
-    display: flex;
-    margin: var(--spacing);
-  }
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-  div {
-    color: white;
-    font-size: 5vw;
-    display: flex;
-    flex: 1 1;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    overflow: hidden;
-    user-select: none;
-    position: relative;
-    margin: auto;
-  }
-  .label {
-    position: absolute ;
-    z-index: 40;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    line-height: 0.9em;
-  }
-`

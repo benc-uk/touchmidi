@@ -1,5 +1,6 @@
-import { html, define, dispatch } from '../hybridsjs/index.js'
+import { html, define, dispatch } from 'hybrids'
 import * as midi from '../midi.js'
+import css from './config.css'
 
 function doneClicked(host) {
   // Get the selected device id & channel and notify we're done
@@ -66,76 +67,3 @@ const Component = {
 }
 
 define('midi-config', Component)
-
-const css = `
-#dialog {
-  border: var(--b-width) solid;
-  border-color: #11dd11;
-  border-radius: var(--b-radius);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 1rem;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  background-color: var(--bg);
-  width: 80%
-}
-#container {
-  display: flex;
-}
-.box {
-  flex: 1;
-  margin: 0.5rem;
-  color: #dddddd;
-  font-size: 2rem;
-}
-#deviceSelect {
-  scrollbar-width: none; 
-  background-color: var(--bg);
-  color: #bbbbbb;
-  font-size: 1.5rem;
-  width: 100%;
-  overflow-y: auto;
-  border: var(--b-width) solid;
-  border-color: #222222;
-  border-radius: var(--b-radius);
-  height: 80%;
-  margin: 0.2rem;
-  outline: none;
-  font-family: var(--font)
-}
-button {
-  border: var(--b-width) solid;
-  border-color: #555555;
-  border-radius: var(--b-radius);
-  background-color: var(--bg);
-  font-size: 2rem;
-}
-#channelBox button {
-  width: 4rem;
-  margin: 0.2rem;
-}
-#start {
-  margin-top: 1rem;
-  width: 100%;
-  border-color: #777777;
-  color: #777777;
-}
-.selected {
-  color: var(--bg);
-  background-color: darkblue;
-  border-color: white;
-  color: white;
-  outline: none;
-}
-.unselected {
-  color: #bbbbbb;
-  background-color: var(--bg);
-  border-color: #555555;
-}
-.enabled {
-  color: white !important;
-  border-color: white !important;
-}
-`

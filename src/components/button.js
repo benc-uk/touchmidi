@@ -1,6 +1,7 @@
-import { html, define, property } from '../hybridsjs/index.js'
+import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
 import { darkenColour, formatLabel } from '../utils.js'
+import css from './button.css'
 
 function eventReleased(host, evt) {
   evt.preventDefault()
@@ -77,26 +78,3 @@ export const Component = {
 }
 
 define('midi-button', Component)
-
-const css = `
-  :host {
-    flex: 1 1;
-    display: flex;
-    margin: var(--spacing);
-  }
-  button {
-    font-family: var(--font);
-    background-color: var(--bg);
-    font-size: 4vw;
-    display: flex;
-    flex: 1 1;
-    border: var(--b-width) solid;
-    border-radius: var(--b-radius);
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    overflow: hidden;
-    width: 1px;
-    user-select: none;
-  }
-`

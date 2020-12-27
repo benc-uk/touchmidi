@@ -8,5 +8,11 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(process.cwd(), "dist"),
   },
+
   plugins: [new CleanWebpackPlugin()],
+
+  module: {
+    // Load CSS as raw, apparently this is what hybrids-js needs
+    rules: [{ test: /\.css$/, use: "raw-loader" }],
+  },
 };

@@ -1,0 +1,21 @@
+:host {
+  flex: 1 1;
+  display: flex;
+  margin: var(--spacing);
+}
+
+div {
+  font-size: 4vw;
+  display: flex;
+  flex: 1 1;
+  border: var(--b-width) solid;
+  border-radius: var(--b-radius);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 0.9em;
+  cursor: pointer;
+  overflow: hidden;
+  width: 1px;
+  user-select: none;
+}
