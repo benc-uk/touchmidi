@@ -98,7 +98,7 @@ const css = `
   }
   div {
     color: white;
-    font-size: 6vw;
+    font-size: 5vw;
     display: flex;
     flex: 1 1;
     justify-content: center;
