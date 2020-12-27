@@ -35,11 +35,11 @@ export async function init() {
 // Send MIDI note ON
 // =====================================================================================
 export function sendNoteOn(note, chan = 1, velo = 127) {
-  console.log('NODE ON ' + note)
+  console.log('NODE ON -- ' + note + midiOut)
   if (!midiOut) return
   const channel = globalChannel > 0 ? globalChannel : chan
 
-  midOut.send([0x90 + (channel - 1), note, velo])
+  midiOut.send([0x90 + (channel - 1), note, velo])
 }
 
 // =====================================================================================
@@ -50,7 +50,7 @@ export function sendNoteOff(note, chan = 1, velo = 127) {
   if (!midiOut) return
   const channel = globalChannel > 0 ? globalChannel : chan
 
-  midOut.send([0x80 + (channel - 1), note, velo])
+  midiOut.send([0x80 + (channel - 1), note, velo])
 }
 
 // =====================================================================================
@@ -70,7 +70,9 @@ export function sendCC(cc, chan = 1, val = 0) {
 export function sendNRPN(nrpn, chan = 1, val = 0, highRes = false) {
   if (!midiOut) return
 
-  const { lsb, msb } = parseNRPN(nrpn)
+  const parts = nrpn.split(',')
+  const lsb = parseInt(parts[0].trim())
+  const msb = parseInt(parts[1].trim())
 
   midiOut.send([0xb0 + (chan - 1), 0x63, msb])
   midiOut.send([0xb0 + (chan - 1), 0x62, lsb])

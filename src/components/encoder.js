@@ -47,7 +47,7 @@ export const Component = {
     }
 
     // Handle MIDI actions, might be CC or NRPN
-    if (cc) {
+    if (cc > 0) {
       midi.sendCC(cc, chan, value)
     }
     if (nrpn) {
@@ -55,7 +55,7 @@ export const Component = {
     }
 
     return html`<div>
-      <svg viewBox="0 0 36 36">
+      <svg viewBox="0 0 36 36" preserveAspectRatio="xMaxYMid meet">
         <path
           d="M18 2.0
 a 16 16 0 0 1 0 32

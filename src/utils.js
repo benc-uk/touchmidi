@@ -1,28 +1,13 @@
-const MOVE_CLAMP = 6
-
-// export function calcDelta(oldPos, newPos) {
-//   let y = newPos.y - oldPos.y
-//   let x = newPos.x - oldPos.x
-//   x = clamp(x, -MOVE_CLAMP, MOVE_CLAMP)
-//   y = clamp(y, -MOVE_CLAMP, MOVE_CLAMP)
-
-//   // Update old pos
-//   oldPos.y = newPos.y
-//   oldPos.x = newPos.x
-//   return { x, y }
-// }
-
-export function parseNRPN(nrpn = '') {
-  parts = nrpn.split(',')
-  lsb = parseInt(parts[0].trim())
-  msb = parseInt(parts[1].trim())
-  return { lsb, msb }
-}
-
+// =====================================================================================
+// Good old fashion math clamping function
+// =====================================================================================
 export function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max)
 }
 
+// =====================================================================================
+// Formats labels for widgets with dynamic values based on formatting codes
+// =====================================================================================
 export function formatLabel(input, value = '', percent = '', chan = '', cc = '', note = '') {
   let newLabel = input.replaceAll('\\n', '<br>')
   newLabel = newLabel.replaceAll('%v', value)
@@ -34,8 +19,10 @@ export function formatLabel(input, value = '', percent = '', chan = '', cc = '',
   return newLabel
 }
 
-export function darkenColour(colour = '') {
-  const hexOpacity = '60'
+// =====================================================================================
+// Helper to darken colours, actually it makes them semi-opaque
+// =====================================================================================
+export function darkenColour(colour = '', hexOpacity = '60') {
   if (colour.startsWith('#')) {
     return `${colour}${hexOpacity}`
   } else {
@@ -43,6 +30,9 @@ export function darkenColour(colour = '') {
   }
 }
 
+// =====================================================================================
+// Looks up named HTML colours and returns hex representation
+// =====================================================================================
 export function colourNameToHex(colour) {
   var colours = {
     aliceblue: '#f0f8ff',
@@ -190,5 +180,5 @@ export function colourNameToHex(colour) {
 
   if (typeof colours[colour.toLowerCase()] != 'undefined') return colours[colour.toLowerCase()]
 
-  return false
+  return '#ffffff'
 }

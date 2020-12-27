@@ -106,6 +106,15 @@ async function pageSetup() {
   const style = document.createElement('style')
   style.textContent = mainCss
 
+  // Set favicon
+  let iconLink = document.querySelector("link[rel~='icon']")
+  if (!iconLink) {
+    iconLink = document.createElement('link')
+    iconLink.rel = 'icon'
+    iconLink.href = 'https://raw.githubusercontent.com/benc-uk/touchmidi2/main/src/assets/favicon.png'
+    document.getElementsByTagName('head')[0].appendChild(iconLink)
+  }
+
   // Inject stylesheet (keeps HTML clean)
   document.head.append(style)
 }

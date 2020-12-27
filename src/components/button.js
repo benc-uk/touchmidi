@@ -24,13 +24,13 @@ function eventPressed(host, evt) {
 
   // Handle MIDI actions, might be note, CC or NRPN
   if (host._pressed) {
-    if (host.cc) {
+    if (host.cc > 0) {
       midi.sendCC(host.cc, host.chan, host.value)
     }
     if (host.nrpn) {
       midi.sendNRPN(host.nrpn, host.chan, host.value, host.highResNrpn)
     }
-    if (host.note) {
+    if (host.note > 0) {
       midi.sendNoteOn(host.note, host.chan, host.velo)
     }
   } else if (host.toggle) {

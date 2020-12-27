@@ -54,7 +54,7 @@ export const Component = {
     }`
 
     // Handle MIDI actions, might be CC or NRPN
-    if (cc) {
+    if (cc > 0) {
       midi.sendCC(cc, chan, value)
     }
     if (nrpn) {
