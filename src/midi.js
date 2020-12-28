@@ -1,4 +1,4 @@
-import { clamp } from './utils.js'
+import { clamp, getWidgetValue } from './utils.js'
 
 export var access
 var midiOut
@@ -21,6 +21,14 @@ export async function init() {
       midiOut = access.outputs.get(evt.detail.deviceId)
       // Global MIDI channel (disabled if 0)
       globalChannel = evt.detail.globalChannel
+
+      // Restore saved values for certain widgets
+      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder')) {
+        let savedVal = getWidgetValue(widget)
+        console.log(savedVal)
+
+        if (savedVal) widget._update = { restoreValue: savedVal }
+      }
     })
 
     // Show config dialog
@@ -61,6 +69,7 @@ export function sendCC(cc, chan = 1, val = 0) {
   const channel = globalChannel > 0 ? globalChannel : chan
   val = clamp(val, 0, 127)
 
+  console.log('send cc', cc, val)
   midiOut.send([0xb0 + (channel - 1), cc, val])
 }
 

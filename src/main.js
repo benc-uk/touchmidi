@@ -25,7 +25,7 @@ let activeWidgets = []
 // The main entry point is here
 window.addEventListener('load', async () => {
   await pageSetup()
-  midi.init()
+  await midi.init()
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it
@@ -105,6 +105,12 @@ async function pageSetup() {
   // Global main styles
   const style = document.createElement('style')
   style.textContent = mainCss
+
+  // Viewport
+  let viewport = document.createElement('meta')
+  viewport.setAttribute('name', 'viewport')
+  viewport.setAttribute('content', 'width=device-width, user-scalable=no, initial-scale=1.0')
+  document.getElementsByTagName('head')[0].appendChild(viewport)
 
   // Set favicon
   let iconLink = document.querySelector("link[rel~='icon']")

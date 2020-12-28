@@ -1,14 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0"
-    />
     <title>Touch Midi 2</title>
-    <!-- Do not remove! -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi2@main/dist/bundle.js"></script> -->
     <script src="../dist/bundle.js"></script>
   </head>
   <body>
@@ -18,6 +11,12 @@
       <midi-button chan="2" note="63"></midi-button>
       <midi-button chan="2" note="64"></midi-button>
       <midi-button chan="2" note="65"></midi-button>
+    </group-row>
+    <group-row>
+      <midi-encoder cc="80"></midi-encoder>
+      <midi-encoder cc="81"></midi-encoder>
+      <midi-encoder cc="82"></midi-encoder>
+      <midi-encoder c="83"></midi-encoder>
     </group-row>
   </body>
 </html>

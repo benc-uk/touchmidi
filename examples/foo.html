@@ -6,21 +6,31 @@
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0"
     />
-    <title>Touch Midi 2</title>
-    <!-- <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi2@main/dist/bundle.js"></script> -->
-    <script src="../dist/bundle.js"></script>
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+      .col {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .box {
+        flex: 1 0;
+        border: 5px solid teal;
+      }
+      .boxb {
+        flex: 7;
+        border: 5px solid teal;
+      }
+    </style>
   </head>
   <body>
-    <group-row>
-      <midi-encoder cc="57" colour="orange"></midi-encoder>
-      <midi-encoder cc="58" colour="lime"></midi-encoder>
-      <midi-encoder cc="57" colour="crimson"></midi-encoder>
-      <midi-encoder cc="58" colour="#1166ff"></midi-encoder>
-      <midi-encoder cc="58" colour="#1166ff"></midi-encoder>
-      <!-- <midi-slider cc="57" colour="orange"></midi-slider>
-      <midi-slider cc="58" colour="lime"></midi-slider>
-      <midi-slider cc="57" colour="crimson"></midi-slider>
-      <midi-slider cc="58" colour="#1166ff"></midi-slider> -->
-    </group-row>
+    <div class="col">
+      <div class="box">1</div>
+      <div class="boxb">2</div>
+      <div class="box">3</div>
+    </div>
   </body>
 </html>

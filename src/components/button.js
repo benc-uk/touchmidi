@@ -63,7 +63,8 @@ export const Component = {
 
     // Default label is to show the value
     if (label === '__unset__') {
-      label = '%n'
+      if (note > 0) label = '%n'
+      if (cc > 0) label = '%t'
     }
 
     const newStyle = `button {

@@ -1,22 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0"
-    />
     <title>Touch Midi 2</title>
-    <!-- <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi2@main/dist/bundle.js"></script> -->
     <script src="../dist/bundle.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi2@main/dist/bundle.js"></script> -->
   </head>
   <body>
-    <group-column>
-      <midi-encoder cc="57" colour="orange"></midi-encoder>
-      <midi-encoder cc="58" colour="lime"></midi-encoder>
-      <midi-encoder cc="57" colour="crimson"></midi-encoder>
-      <midi-encoder cc="58" colour="#1166ff"></midi-encoder>
-      <midi-encoder cc="58" colour="#1166ff"></midi-encoder>
-    </group-column>
+    <group-row grow="4">
+      <midi-slider cc="71"></midi-slider>
+      <midi-slider cc="72"></midi-slider>
+      <midi-slider cc="73"></midi-slider>
+      <midi-slider cc="74"></midi-slider>
+      <midi-slider cc="75"></midi-slider>
+      <midi-slider cc="76"></midi-slider>
+      <midi-slider cc="77"></midi-slider>
+      <midi-slider cc="78"></midi-slider>
+    </group-row>
+    <group-row grow="2">
+      <midi-encoder cc="71"></midi-encoder>
+      <midi-encoder cc="72"></midi-encoder>
+      <midi-encoder cc="73"></midi-encoder>
+      <midi-encoder cc="74"></midi-encoder>
+      <midi-encoder cc="75"></midi-encoder>
+      <midi-encoder cc="76"></midi-encoder>
+      <midi-encoder cc="77"></midi-encoder>
+      <midi-encoder cc="78"></midi-encoder>
+    </group-row>
+    <!-- <group-row>
+      <midi-button cc="71"></midi-button>
+      <midi-button cc="72"></midi-button>
+      <midi-button cc="73"></midi-button>
+      <midi-button cc="74"></midi-button>
+      <midi-button cc="75"></midi-button>
+      <midi-button cc="76"></midi-button>
+      <midi-button cc="77"></midi-button>
+      <midi-button cc="78"></midi-button>
+    </group-row>
+    <group-row small>
+      <midi-button cc="71"></midi-button>
+      <midi-button cc="72"></midi-button>
+      <midi-button cc="73"></midi-button>
+      <midi-button cc="74"></midi-button>
+      <midi-button cc="75"></midi-button>
+      <midi-button cc="76"></midi-button>
+      <midi-button cc="77"></midi-button>
+      <midi-button cc="78"></midi-button>
+    </group-row> -->
   </body>
 </html>

@@ -1,27 +1,17 @@
 import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
-import { darkenColour, formatLabel } from '../utils.js'
+import { darkenColour, formatLabel, updateObserver, saveWidgetValue } from '../utils.js'
 import css from './slider.css'
 
 export const Component = {
   // Private internal properties
   _previousPos: null,
   _update: {
-    observe: (host, newValue, lastValue) => {
-      host._previousPos = { x: newValue.x, y: newValue.y }
-      // Work out new value based on dx or dy
-      var tempValue = 0
-      if (host.horizontal) tempValue = host.value + newValue.dx
-      else tempValue = host.value - newValue.dy
-      // Clamp to min and max
-      if (tempValue > host.max) tempValue = host.max
-      if (tempValue < host.min) tempValue = host.min
-      host.value = Math.round(tempValue)
-    }
+    observe: updateObserver
   },
 
   // MIDI properties
-  value: 0,
+  value: Number.MIN_SAFE_INTEGER,
   chan: 1,
   cc: -1,
   nrpn: '',
@@ -34,6 +24,8 @@ export const Component = {
   horizontal: false,
 
   render: ({ value, colour, label, min, max, cc, chan, horizontal, nrpn }) => {
+    saveWidgetValue('midi-slider', `${cc}${chan}${nrpn}`, value)
+
     // Clamp to min and max
     if (value > max) value = max
     if (value < min) value = min

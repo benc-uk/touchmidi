@@ -31,6 +31,56 @@ export function darkenColour(colour = '', hexOpacity = '60') {
 }
 
 // =====================================================================================
+// Used as the observer function for widgets _update property
+// =====================================================================================
+export function updateObserver(host, update, lastValue) {
+  if (update.restoreValue) {
+    host.value = update.restoreValue
+    return
+  }
+
+  host._previousPos = { x: update.x, y: update.y }
+  // Work out new value based on dx or dy
+  var tempValue = 0
+  if (host.horizontal) tempValue = host.value + update.dx
+  else tempValue = host.value - update.dy
+  // Clamp to min and max
+  if (tempValue > host.max) tempValue = host.max
+  if (tempValue < host.min) tempValue = host.min
+  host.value = Math.round(tempValue)
+}
+
+// =============================================================================
+// Save widget value to local storage
+// =============================================================================
+export function saveWidgetValue(widgetName, id, value) {
+  if (value === Number.MIN_SAFE_INTEGER) return
+
+  const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+
+  if (widgetName.toLowerCase() == 'midi-pad') {
+    // noop
+  } else {
+    localStorage.setItem(`touchmidi.${filename}.${widgetName}.${id}`, value)
+  }
+}
+
+// =============================================================================
+// Restore widget value from local storage
+// =============================================================================
+export function getWidgetValue(widget) {
+  const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+  const id = `${widget.cc}${widget.chan}${widget.nrpn}`
+  const widgetName = widget.tagName.toLowerCase()
+
+  if (widgetName.toLowerCase() == 'midi-pad') {
+    // noop
+  } else {
+    return localStorage.getItem(`touchmidi.${filename}.${widgetName}.${id}`)
+  }
+}
+
+// =====================================================================================
 // Looks up named HTML colours and returns hex representation
 // =====================================================================================
 export function colourNameToHex(colour) {
