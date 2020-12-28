@@ -1,49 +1,40 @@
-import { clamp, getWidgetValue } from './utils.js'
+import { clamp } from './utils.js'
 
-export var access
+var access
 var midiOut
 var globalChannel
 
-export async function init() {
+export async function getAccess() {
   try {
-    // First try to get MIDI access, will throw errors if fails
-    access = await navigator.requestMIDIAccess()
-    const configDialog = document.createElement('midi-config')
-
-    // Get settings returned from config dialog (when config-done event fires)
-    configDialog.addEventListener('config-done', (evt) => {
-      if (!evt.detail || !evt.detail.deviceId) {
-        alert('No MIDI device id returned, MIDI output device not opened!')
-        return
-      }
-
-      // Get the MIDI output matching the device id we got
-      midiOut = access.outputs.get(evt.detail.deviceId)
-      // Global MIDI channel (disabled if 0)
-      globalChannel = evt.detail.globalChannel
-
-      // Restore saved values for certain widgets
-      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder')) {
-        let savedVal = getWidgetValue(widget)
-        console.log(savedVal)
-
-        if (savedVal) widget._update = { restoreValue: savedVal }
-      }
-    })
-
-    // Show config dialog
-    document.body.appendChild(configDialog)
+    if (!access) {
+      // First try to get MIDI access, will throw error if fails
+      access = await navigator.requestMIDIAccess()
+    }
+    return access
   } catch (err) {
-    console.error(err)
-    alert("Unable to get MIDI access\nYour browser doesn't support MIDI, try using Chrome or Edge")
+    console.error('MIDI getAccess failed', err)
+    //alert("Unable to get MIDI access\nYour browser doesn't support MIDI, try using Chrome or Edge")
   }
+}
+
+// =====================================================================================
+// Open given MIDI output device
+// =====================================================================================
+export function openMIDIPort(deviceId = 'output-1') {
+  midiOut = deviceId
+}
+
+// =====================================================================================
+// Open given MIDI output device
+// =====================================================================================
+export function setGlobalChannel(channel = 0) {
+  globalChannel = channel
 }
 
 // =====================================================================================
 // Send MIDI note ON
 // =====================================================================================
 export function sendNoteOn(note, chan = 1, velo = 127) {
-  console.log('NODE ON -- ' + note + midiOut)
   if (!midiOut) return
   const channel = globalChannel > 0 ? globalChannel : chan
 
@@ -54,7 +45,6 @@ export function sendNoteOn(note, chan = 1, velo = 127) {
 // Send MIDI note OFF
 // =====================================================================================
 export function sendNoteOff(note, chan = 1, velo = 127) {
-  console.log('NODE OFF ! ' + note)
   if (!midiOut) return
   const channel = globalChannel > 0 ? globalChannel : chan
 
@@ -69,7 +59,6 @@ export function sendCC(cc, chan = 1, val = 0) {
   const channel = globalChannel > 0 ? globalChannel : chan
   val = clamp(val, 0, 127)
 
-  console.log('send cc', cc, val)
   midiOut.send([0xb0 + (channel - 1), cc, val])
 }
 

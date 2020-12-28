@@ -11,7 +11,7 @@ import './components/config.js'
 import './components/slider.js'
 import './components/encoder.js'
 import './components/button.js'
-import { clamp } from './utils.js'
+import { clamp, getWidgetValue } from './utils.js'
 
 import mainCss from './css/main.css'
 
@@ -25,7 +25,41 @@ let activeWidgets = []
 // The main entry point is here
 window.addEventListener('load', async () => {
   await pageSetup()
-  await midi.init()
+  const access = await midi.getAccess()
+
+  if (!access) {
+    document.body.innerHTML = `<div style="text-align: center; font-size: 150%">
+    <h1 style="color:#ee2222">Failed to get MIDI access</h1><br>This is likely because your browser doesn't support MIDI or permissions were not granted<br><br>Try again using Chrome or Edge</div>`
+    return
+  }
+
+  // Create config dialog and pass it the MIDI access
+  const configDialog = document.createElement('midi-config')
+  configDialog.midiAccess = access
+
+  // Get settings returned from config dialog (when config-done event fires)
+  configDialog.addEventListener('config-done', (evt) => {
+    if (!evt.detail || !evt.detail.deviceId) {
+      alert('No MIDI device id returned, MIDI output device not opened!')
+      return
+    }
+
+    // Configure MIDI with setting which port to use
+    midi.openMIDIPort(access.outputs.get(evt.detail.deviceId))
+    // Set global MIDI channel (disabled if 0)
+    midi.setGlobalChannel(evt.detail.globalChannel)
+
+    // Restore saved values for certain widgets
+    for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder')) {
+      let savedVal = getWidgetValue(widget)
+      console.log(savedVal)
+
+      if (savedVal) widget._update = { restoreValue: savedVal }
+    }
+  })
+
+  // Show config dialog
+  document.body.appendChild(configDialog)
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it

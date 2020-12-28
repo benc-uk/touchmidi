@@ -30,12 +30,18 @@ function startClicked(host) {
 }
 
 const Component = {
-  render: () => {
+  midiAccess: {},
+  render: ({ midiAccess }) => {
     // Modal darken background
     document.getElementById('pageMask').style.display = 'block'
 
+    if (!midiAccess) {
+      alert('No MIDI access, something went wrong!\nYou should never see this error!')
+      return
+    }
+
     // Hang on! There's no devices!!
-    if (midi.access.outputs.size == 0) {
+    if (midiAccess.outputs.size == 0) {
       //alert('No MIDI output devices found!\nConnect a MIDI device and reload the page')
       return html` <div id="dialog">
         <div class="box" style="text-align:center">
@@ -68,7 +74,7 @@ const Component = {
           <div class="box">
             Select MIDI Device
             <select size="5" id="deviceList">
-              ${Array.from(midi.access.outputs.entries()).map(
+              ${Array.from(midiAccess.outputs.entries()).map(
                 (device) => html`<option value="${device[0]}" selected="${device[0] == config.deviceId}">${device[1].name}</option>`
               )}
             </select>
