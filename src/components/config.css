@@ -9,25 +9,36 @@
   transform: translate(-50%, -50%);
   z-index: 100;
   background-color: var(--bg);
-  width: 80%;
+  width: 90%;
+  color: #dddddd;
 }
 
 #container {
   display: flex;
+  flex-direction: column;
 }
 
 .box {
   flex: 1;
   margin: 0.5rem;
-  color: #dddddd;
-  font-size: 2rem;
+  font-size: min(6vw, 2rem);
 }
 
-#deviceSelect {
+label {
+  font-size: min(5vw, 1.8rem);
+}
+
+INPUT[type='checkbox'] {
+  width: min(5vw, 1.8rem);
+  height: min(5vw, 1.8rem);
+  border-radius: var(--b-radius);
+}
+
+select {
   scrollbar-width: none;
   background-color: var(--bg);
   color: #bbbbbb;
-  font-size: 1.5rem;
+  font-size: min(6vw, 2rem);
   width: 100%;
   overflow-y: auto;
   border: var(--b-width) solid;
@@ -39,41 +50,19 @@
   font-family: var(--font);
 }
 
-button {
-  border: var(--b-width) solid;
-  border-color: #555555;
-  border-radius: var(--b-radius);
-  background-color: var(--bg);
-  font-size: 2rem;
-}
-
 #channelBox button {
   width: 4rem;
   margin: 0.2rem;
 }
 
 #start {
+  border: var(--b-width) solid;
+  border-radius: var(--b-radius);
+  background-color: var(--bg);
+  font-size: 2rem;
   margin-top: 1rem;
   width: 100%;
-  border-color: #777777;
-  color: #777777;
-}
-
-.selected {
-  color: var(--bg);
-  background-color: darkblue;
-  border-color: white;
+  background-color: darkgreen;
   color: white;
-  outline: none;
-}
-
-.unselected {
-  color: #bbbbbb;
-  background-color: var(--bg);
-  border-color: #555555;
-}
-
-.enabled {
-  color: white !important;
-  border-color: white !important;
+  border-color: #11dd11;
 }

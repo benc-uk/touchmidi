@@ -39,14 +39,19 @@ export function updateObserver(host, update, lastValue) {
     return
   }
 
+  // IMPORTANT! save x & y as previousPos
   host._previousPos = { x: update.x, y: update.y }
+
   // Work out new value based on dx or dy
   var tempValue = 0
   if (host.horizontal) tempValue = host.value + update.dx
   else tempValue = host.value - update.dy
+
   // Clamp to min and max
   if (tempValue > host.max) tempValue = host.max
   if (tempValue < host.min) tempValue = host.min
+
+  // Finally update the value (which will trigger a render)
   host.value = Math.round(tempValue)
 }
 

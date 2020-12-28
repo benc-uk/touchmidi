@@ -35,7 +35,7 @@ export async function init() {
     document.body.appendChild(configDialog)
   } catch (err) {
     console.error(err)
-    alert("Unable to get MIDI access\nYour browser doesn't support MIDI, try using a modern browser")
+    alert("Unable to get MIDI access\nYour browser doesn't support MIDI, try using Chrome or Edge")
   }
 }
 
