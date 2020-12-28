@@ -1,3 +1,9 @@
+/*
+  TouchMIDI v2
+  button.js - A widget that sends MIDI events
+  Ben Coleman, Dec 2020 
+*/
+
 import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
 import { darkenColour, formatLabel } from '../utils.js'
@@ -8,8 +14,8 @@ function eventReleased(host, evt) {
   if (!host.toggle && host._pressed) {
     host._pressed = false
 
-    if (host.note) {
-      midi.sendNoteOff(host.note, host.chan, host.velo)
+    if (host.note > 0) {
+      midi.sendNoteOff(host.note, host.chan)
     }
   }
 }
@@ -28,14 +34,20 @@ function eventPressed(host, evt) {
       midi.sendCC(host.cc, host.chan, host.value)
     }
     if (host.nrpn) {
-      midi.sendNRPN(host.nrpn, host.chan, host.value, host.highResNrpn)
+      midi.sendNRPN(host.nrpn, host.chan, host.value, host.nrpnHires)
     }
     if (host.note > 0) {
       midi.sendNoteOn(host.note, host.chan, host.velo)
     }
   } else if (host.toggle) {
-    if (host.note) {
-      midi.sendNoteOff(host.note, host.chan, host.velo)
+    if (host.note > 0) {
+      midi.sendNoteOff(host.note, host.chan)
+    }
+    if (host.cc > 0 && host.valueOff) {
+      midi.sendCC(host.cc, host.chan, host.valueOff)
+    }
+    if (host.nrpn && host.valueOff) {
+      midi.sendNRPN(host.nrpn, host.chan, host.valueOff, host.nrpnHires)
     }
   }
 }
@@ -48,8 +60,9 @@ export const Component = {
   chan: 1,
   cc: -1,
   nrpn: '',
-  highResNrpn: false,
+  nrpnHires: false,
   value: 0,
+  valueOff: 0,
   velo: 127,
   note: -1,
 
@@ -58,13 +71,14 @@ export const Component = {
   label: '__unset__',
   toggle: false,
 
-  render: ({ label, colour, _pressed, chan, cc, note }) => {
+  render: ({ label, colour, _pressed, chan, cc, nrpn, note }) => {
     const bg = _pressed ? `${darkenColour(colour)}` : 'var(--bg)'
 
     // Default label is to show the value
     if (label === '__unset__') {
       if (note > 0) label = '%n'
-      if (cc > 0) label = '%t'
+      else if (cc > 0) label = '%t'
+      else if (nrpn) label = nrpn
     }
 
     const newStyle = `button {

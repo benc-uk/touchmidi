@@ -1,6 +1,7 @@
 /*
-    TouchMIDI v2
-    Ben Coleman, Dec 2020 
+  TouchMIDI v2
+  main.js - App entry point and event input handling
+  Ben Coleman, Dec 2020 
 */
 
 import * as midi from './midi.js'
@@ -11,11 +12,12 @@ import './components/config.js'
 import './components/slider.js'
 import './components/encoder.js'
 import './components/button.js'
+import './components/xypad.js'
 import { clamp, getWidgetValue } from './utils.js'
 
 import mainCss from './css/main.css'
 
-const MOVE_CLAMP = 12
+const MOVE_CLAMP = 6
 const SENSITIVITY = 1
 const MOUSE_ID = 20
 
@@ -44,17 +46,25 @@ window.addEventListener('load', async () => {
       return
     }
 
-    // Configure MIDI with setting which port to use
-    midi.openMIDIPort(access.outputs.get(evt.detail.deviceId))
-    // Set global MIDI channel (disabled if 0)
-    midi.setGlobalChannel(evt.detail.globalChannel)
+    // Configure MIDI with global settings
+    midi.setup(access.outputs.get(evt.detail.deviceId), evt.detail.globalChannel || 0)
+    console.log(`MIDI configured for device '${evt.detail.deviceId}' and channel: ${evt.detail.globalChannel}`)
 
-    // Restore saved values for certain widgets
-    for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder')) {
-      let savedVal = getWidgetValue(widget)
-      console.log(savedVal)
-
-      if (savedVal) widget._update = { restoreValue: savedVal }
+    // Restore saved values for certain widgets, if
+    if (evt.detail.restoreValues) {
+      console.log('Restoring saved widget values')
+      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad')) {
+        if (widget.tagName.toLowerCase() == 'midi-pad') {
+          let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
+          let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
+          if (savedValX) widget.valueX = savedValX
+          if (savedValY) widget.valueY = savedValY
+        } else {
+          let savedVal = getWidgetValue(widget)
+          // By setting the value we trigger a redraw AND a send of the MIDI events
+          if (savedVal) widget.value = savedVal
+        }
+      }
     }
   })
 

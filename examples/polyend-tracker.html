@@ -6,45 +6,8 @@
     <!-- <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi2@main/dist/bundle.js"></script> -->
   </head>
   <body>
-    <group-row grow="4">
-      <midi-slider cc="71"></midi-slider>
-      <midi-slider cc="72"></midi-slider>
-      <midi-slider cc="73"></midi-slider>
-      <midi-slider cc="74"></midi-slider>
-      <midi-slider cc="75"></midi-slider>
-      <midi-slider cc="76"></midi-slider>
-      <midi-slider cc="77"></midi-slider>
-      <midi-slider cc="78"></midi-slider>
-    </group-row>
-    <group-row grow="2">
-      <midi-encoder cc="71"></midi-encoder>
-      <midi-encoder cc="72"></midi-encoder>
-      <midi-encoder cc="73"></midi-encoder>
-      <midi-encoder cc="74"></midi-encoder>
-      <midi-encoder cc="75"></midi-encoder>
-      <midi-encoder cc="76"></midi-encoder>
-      <midi-encoder cc="77"></midi-encoder>
-      <midi-encoder cc="78"></midi-encoder>
-    </group-row>
-    <!-- <group-row>
-      <midi-button cc="71"></midi-button>
-      <midi-button cc="72"></midi-button>
-      <midi-button cc="73"></midi-button>
-      <midi-button cc="74"></midi-button>
-      <midi-button cc="75"></midi-button>
-      <midi-button cc="76"></midi-button>
-      <midi-button cc="77"></midi-button>
-      <midi-button cc="78"></midi-button>
-    </group-row>
-    <group-row small>
-      <midi-button cc="71"></midi-button>
-      <midi-button cc="72"></midi-button>
-      <midi-button cc="73"></midi-button>
-      <midi-button cc="74"></midi-button>
-      <midi-button cc="75"></midi-button>
-      <midi-button cc="76"></midi-button>
-      <midi-button cc="77"></midi-button>
-      <midi-button cc="78"></midi-button>
-    </group-row> -->
+    <group-row>
+      <midi-pad cc-x="22" cc-y="83" colour="red" label="Filter Control\n%p%"></midi-pad>
+      <midi-slider cc="89" chan="3"></midi-slider>
   </body>
 </html>

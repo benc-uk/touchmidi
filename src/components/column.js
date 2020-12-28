@@ -1,3 +1,9 @@
+/*
+  TouchMIDI v2
+  column.js - A simple div with flexbox layout
+  Ben Coleman, Dec 2020 
+*/
+
 import { html, define } from 'hybrids'
 import css from './column.css'
 

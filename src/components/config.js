@@ -1,26 +1,36 @@
+/*
+  TouchMIDI v2
+  config.js - Config dialog shown at startup
+  Ben Coleman, Dec 2020 
+*/
+
 import { html, define, dispatch } from 'hybrids'
-import * as midi from '../midi.js'
 import css from './config.css'
 
 function startClicked(host) {
   // Get config values from HTML
   const deviceId = host.shadowRoot.querySelector('#deviceList').value
-  const globalChannel = host.shadowRoot.querySelector('#channel').value
-  const sendSaved = host.shadowRoot.querySelector('#sendSaved').checked
+  const globalChannel = parseInt(host.shadowRoot.querySelector('#channel').value) || 0
+  const restoreValues = host.shadowRoot.querySelector('#restoreValues').checked
 
   if (!deviceId) {
     return
   }
 
+  if (!restoreValues) {
+    localStorage.clear()
+  }
+
   // Save config options to local storage
   const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
-  localStorage.setItem(`touchmidi.${filename}.config`, JSON.stringify({ deviceId, globalChannel, sendSaved }))
+  localStorage.setItem(`touchmidi.${filename}.config`, JSON.stringify({ deviceId, globalChannel, restoreValues }))
 
   // Notify we're done
   dispatch(host, 'config-done', {
     detail: {
       deviceId,
-      globalChannel
+      globalChannel,
+      restoreValues
     }
   })
 
@@ -64,7 +74,7 @@ const Component = {
       config = {
         deviceId: 'output-1',
         globalChannel: 1,
-        sendSaved: true
+        restoreValues: true
       }
     }
 
@@ -88,9 +98,9 @@ const Component = {
             </select>
           </div>
           <div class="box">
-            Saved Values<br />
-            <input type="checkbox" id="sendSaved" name="sendSaved" checked="${config.sendSaved}" />
-            <label for="sendSaved">Send On Start</label>
+            Persist Values<br />
+            <input type="checkbox" id="restoreValues" name="restoreValues" checked="${config.restoreValues}" />
+            <label for="restoreValues">Save &amp; Restore at Startup</label>
           </div>
         </div>
         <button onclick="${startClicked}" id="start">Start</button>

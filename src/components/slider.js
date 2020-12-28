@@ -1,3 +1,9 @@
+/*
+  TouchMIDI v2
+  slider.js - A widget that acts like a slider or fader, sends MIDI CC or NRPN messages
+  Ben Coleman, Dec 2020 
+*/
+
 import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
 import { darkenColour, formatLabel, updateObserver, saveWidgetValue } from '../utils.js'

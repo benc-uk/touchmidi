@@ -1,3 +1,9 @@
+/*
+  TouchMIDI v2
+  encoder.js - A widget that acts like an encoder or knob, sends MIDI CC or NRPN messages
+  Ben Coleman, Dec 2020 
+*/
+
 import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
 import { formatLabel, updateObserver, saveWidgetValue } from '../utils.js'
