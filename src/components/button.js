@@ -1,6 +1,6 @@
 /*
   TouchMIDI v2
-  button.js - A widget that sends MIDI events
+  button.js - A widget that sends MIDI events when pressed or toggled on/off
   Ben Coleman, Dec 2020 
 */
 
@@ -94,7 +94,7 @@ export const Component = {
       border-color: ${colour};
       font-size: ${_width * 0.4 * labelScale}px !important;
     }`
-    //${_width * 0.1 * labelScale}
+
     return html`<button
       onmouseup="${eventReleased}"
       ontouchend="${eventReleased}"

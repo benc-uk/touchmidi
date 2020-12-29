@@ -1,0 +1,42 @@
+:host {
+  flex: 1 1;
+  display: flex;
+  margin: var(--spacing);
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+  position: relative;
+}
+
+button {
+  font-family: var(--font);
+  background-color: var(--bg);
+  font-size: 5vw;
+  flex: 1 1;
+  border: var(--b-width) solid;
+  border-radius: var(--b-radius);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  user-select: none;
+}
+
+#label {
+  position: absolute;
+  background-color: var(--bg);
+  height: 50%;
+  text-align: center;
+  width: 25%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  font-size: 5vw;
+  overflow: hidden;
+  display: block;
+  pointer-events: none;
+}

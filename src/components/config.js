@@ -12,6 +12,7 @@ function startClicked(host) {
   const deviceId = host.shadowRoot.querySelector('#deviceList').value
   const globalChannel = parseInt(host.shadowRoot.querySelector('#channel').value) || 0
   const restoreValues = host.shadowRoot.querySelector('#restoreValues').checked
+  const fullScreen = host.shadowRoot.querySelector('#fullScreen').checked
 
   if (!deviceId) {
     return
@@ -33,6 +34,10 @@ function startClicked(host) {
       restoreValues
     }
   })
+
+  if (fullScreen) {
+    document.body.requestFullscreen()
+  }
 
   // Remove dialog and page mask
   document.getElementById('pageMask').style.display = 'none'
@@ -98,9 +103,11 @@ const Component = {
             </select>
           </div>
           <div class="box">
-            Persist Values<br />
             <input type="checkbox" id="restoreValues" name="restoreValues" checked="${config.restoreValues}" />
             <label for="restoreValues">Save &amp; Restore at Startup</label>
+            <br />
+            <input type="checkbox" id="fullScreen" name="fullScreen" />
+            <label for="fullScreen">Start Fullscreen</label>
           </div>
         </div>
         <button onclick="${startClicked}" id="start">Start</button>

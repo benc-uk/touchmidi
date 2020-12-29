@@ -12,6 +12,7 @@ import './components/slider.js'
 import './components/encoder.js'
 import './components/button.js'
 import './components/xypad.js'
+import './components/counter.js'
 import { clamp, getWidgetValue } from './utils.js'
 
 import mainCss from './css/main.css'
@@ -39,7 +40,8 @@ window.addEventListener('load', async () => {
   openConfigDialog(access)
 
   // Handle dynamic font sizing, can't be done from within each component or widget
-  setWidth()
+  // Tiny delay prevents it not working sometimes
+  setTimeout(setWidth, 20)
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it
@@ -158,7 +160,7 @@ function openConfigDialog(access) {
     // Restore saved values for certain widgets, if
     if (evt.detail.restoreValues) {
       console.log('Restoring saved widget values')
-      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad')) {
+      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-counter')) {
         if (widget.tagName.toLowerCase() == 'midi-pad') {
           let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
           let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
@@ -178,7 +180,7 @@ function openConfigDialog(access) {
 }
 
 function setWidth() {
-  for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-button')) {
+  for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-button,midi-counter')) {
     widget._width = widget.clientWidth
   }
 }

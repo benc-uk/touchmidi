@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
 :root {
-  --bg: black;
+  /* these variables are used everywhere */
+  --bg: black; /* background colour */
+  --b-radius: 0.7rem; /* border radius */
+  --b-width: 0.3rem; /* border thickness */
+  --spacing: 0.5%; /* widget spacing */
 
-  --b-radius: 0.7rem;
-  --b-width: 0.3rem;
-  --spacing: 0.5%;
-
-  --font: 'PT Sans', sans-serif;
-  /* Consolas, 'Courier New', monospace; */
+  --font: 'PT Sans', sans-serif; /* Consolas, 'Courier New', monospace; */
 }
 
 html,
@@ -27,6 +27,7 @@ body {
   flex-direction: column;
 }
 
+/* Used to hide the page behind the config dialog */
 #pageMask {
   background: rgba(0, 0, 0, 0.8);
   position: fixed;
