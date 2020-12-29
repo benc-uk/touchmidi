@@ -4,7 +4,7 @@
   Ben Coleman, Dec 2020 
 */
 
-import * as midi from './midi.js'
+// Load custom component widgets
 import './components/row.js'
 import './components/column.js'
 import './components/config.js'
@@ -13,20 +13,22 @@ import './components/encoder.js'
 import './components/button.js'
 import './components/xypad.js'
 import './components/counter.js'
+import * as midi from './midi.js'
 import { clamp, getWidgetValue } from './utils.js'
 
 import mainCss from './css/main.css'
 
+// Global config consts
 const MOVE_CLAMP = 6
 const SENSITIVITY = 1
 const MOUSE_ID = 20
 
-// A global list of HTML nodes which are being updated (touched)
+// A global list of HTML nodes which are being updated (touched or clicked)
 let activeWidgets = []
 
-window.addEventListener('resize', setWidth)
-
-// The main entry point is here
+// =============================================================================
+// The main entry point is here, after loading the document / page
+// =============================================================================
 window.addEventListener('load', async () => {
   await pageSetup()
   const access = await midi.getAccess()
@@ -37,11 +39,16 @@ window.addEventListener('load', async () => {
     return
   }
 
-  openConfigDialog(access)
+  // Start with MIDI config dialog, which needs MIDI access
+  // We can bypass this (only for dev & testing really) with special `?nomidi` URL query param
+  const urlParams = new URLSearchParams(window.location.search)
+  const noMidi = urlParams.get('nomidi')
+  if (noMidi === null) openConfigDialog(access)
 
-  // Handle dynamic font sizing, can't be done from within each component or widget
-  // Tiny delay prevents it not working sometimes
-  setTimeout(setWidth, 20)
+  // Notify widgets of their real width, used in order to scale fonts on labels
+  // Tiny delay timeout prevents it not working sometimes, probably race condition with document loading
+  window.addEventListener('resize', updateWidgetWidths)
+  setTimeout(updateWidgetWidths, 20)
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it
@@ -110,7 +117,7 @@ function eventSinkHole(evt) {
 }
 
 // =============================================================================
-// Set up the page, CSS and other base elements, keeps the HTML clean
+// Set up the page, CSS etc, keeps the HTML free of requirements
 // =============================================================================
 async function pageSetup() {
   // Mask used for modal config dialog
@@ -133,7 +140,7 @@ async function pageSetup() {
   if (!iconLink) {
     iconLink = document.createElement('link')
     iconLink.rel = 'icon'
-    iconLink.href = 'https://raw.githubusercontent.com/benc-uk/touchmidi2/main/src/assets/favicon.png'
+    iconLink.href = 'https://raw.githubusercontent.com/benc-uk/touchmidi/main/src/assets/favicon.png'
     document.getElementsByTagName('head')[0].appendChild(iconLink)
   }
 
@@ -141,8 +148,11 @@ async function pageSetup() {
   document.head.append(style)
 }
 
+// =============================================================================
+// Display the initial config setup dialog
+// =============================================================================
 function openConfigDialog(access) {
-  // Create config dialog and pass it the MIDI access
+  // Create config dialog element and pass it the MIDI access
   const configDialog = document.createElement('midi-config')
   configDialog.midiAccess = access
 
@@ -175,11 +185,15 @@ function openConfigDialog(access) {
     }
   })
 
-  // Show config dialog
+  // Show config dialog element, by adding to the body
   document.body.appendChild(configDialog)
 }
 
-function setWidth() {
+// =============================================================================
+// Notify all widgets of their current client width
+// =============================================================================
+function updateWidgetWidths() {
+  // TODO: Find a better way of selecting all custom elements / widgets
   for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-button,midi-counter')) {
     widget._width = widget.clientWidth
   }
