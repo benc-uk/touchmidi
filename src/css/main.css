@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 :root {
   --bg: black;
 
@@ -5,7 +6,8 @@
   --b-width: 0.3rem;
   --spacing: 0.5%;
 
-  --font: Consolas, 'Courier New', monospace;
+  --font: 'PT Sans', sans-serif;
+  /* Consolas, 'Courier New', monospace; */
 }
 
 html,

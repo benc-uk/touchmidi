@@ -6,13 +6,16 @@
 
 import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
-import { formatLabel, updateObserver, saveWidgetValue } from '../utils.js'
+import { formatLabel, saveWidgetValue } from '../utils.js'
+import { updateObserver } from './slider.js'
 import css from './encoder.css'
 
 export const Component = {
   // Private internal properties
   _previousPos: null,
+  _width: 30,
   _update: {
+    // We re-use the same update logic as sliders
     observe: updateObserver
   },
 
@@ -28,8 +31,11 @@ export const Component = {
   colour: property('#ffffff'),
   label: '__unset__',
   horizontal: false,
+  labelScale: 1,
+  grow: 1,
 
-  render: ({ value, colour, label, min, max, chan, cc, nrpn }) => {
+  render: ({ value, colour, label, min, max, chan, cc, nrpn, _width, labelScale, grow }) => {
+    // This widget saves state
     saveWidgetValue('midi-encoder', `${cc}${chan}${nrpn}`, value)
 
     // Clamp value to min and max
@@ -52,7 +58,15 @@ export const Component = {
       midi.sendNRPN(nrpn, chan, value, max > 127)
     }
 
-    //return html`<div class="knob">BUM</div>`.style(css)
+    const newStyle = `
+    :host {
+      flex-grow: ${grow}
+    }
+    #label {
+      color: ${colour}; 
+      font-size:${_width * 0.3 * labelScale}px
+    }`
+
     return html`<div>
       <svg viewBox="0 0 36 36">
         <path
@@ -79,8 +93,8 @@ export const Component = {
           stroke-linecap="round"
         />
       </svg>
-      <div class="label" style="color: ${colour}" innerHTML="${formatLabel(label, value, percent, chan, cc)}"></div>
-    </div>`.style(css)
+      <div id="label" innerHTML="${formatLabel(label, value, percent, chan, cc)}"></div>
+    </div>`.style(css, newStyle)
   }
 }
 

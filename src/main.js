@@ -5,7 +5,6 @@
 */
 
 import * as midi from './midi.js'
-
 import './components/row.js'
 import './components/column.js'
 import './components/config.js'
@@ -24,6 +23,8 @@ const MOUSE_ID = 20
 // A global list of HTML nodes which are being updated (touched)
 let activeWidgets = []
 
+window.addEventListener('resize', setWidth)
+
 // The main entry point is here
 window.addEventListener('load', async () => {
   await pageSetup()
@@ -35,41 +36,10 @@ window.addEventListener('load', async () => {
     return
   }
 
-  // Create config dialog and pass it the MIDI access
-  const configDialog = document.createElement('midi-config')
-  configDialog.midiAccess = access
+  openConfigDialog(access)
 
-  // Get settings returned from config dialog (when config-done event fires)
-  configDialog.addEventListener('config-done', (evt) => {
-    if (!evt.detail || !evt.detail.deviceId) {
-      alert('No MIDI device id returned, MIDI output device not opened!')
-      return
-    }
-
-    // Configure MIDI with global settings
-    midi.setup(access.outputs.get(evt.detail.deviceId), evt.detail.globalChannel || 0)
-    console.log(`MIDI configured for device '${evt.detail.deviceId}' and channel: ${evt.detail.globalChannel}`)
-
-    // Restore saved values for certain widgets, if
-    if (evt.detail.restoreValues) {
-      console.log('Restoring saved widget values')
-      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad')) {
-        if (widget.tagName.toLowerCase() == 'midi-pad') {
-          let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
-          let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
-          if (savedValX) widget.valueX = savedValX
-          if (savedValY) widget.valueY = savedValY
-        } else {
-          let savedVal = getWidgetValue(widget)
-          // By setting the value we trigger a redraw AND a send of the MIDI events
-          if (savedVal) widget.value = savedVal
-        }
-      }
-    }
-  })
-
-  // Show config dialog
-  document.body.appendChild(configDialog)
+  // Handle dynamic font sizing, can't be done from within each component or widget
+  setWidth()
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it
@@ -167,4 +137,48 @@ async function pageSetup() {
 
   // Inject stylesheet (keeps HTML clean)
   document.head.append(style)
+}
+
+function openConfigDialog(access) {
+  // Create config dialog and pass it the MIDI access
+  const configDialog = document.createElement('midi-config')
+  configDialog.midiAccess = access
+
+  // Get settings returned from config dialog (when config-done event fires)
+  configDialog.addEventListener('config-done', (evt) => {
+    if (!evt.detail || !evt.detail.deviceId) {
+      alert('No MIDI device id returned, MIDI output device not opened!')
+      return
+    }
+
+    // Configure MIDI with global settings
+    midi.setup(access.outputs.get(evt.detail.deviceId), evt.detail.globalChannel || 0)
+    console.log(`MIDI configured for device '${evt.detail.deviceId}' and channel: ${evt.detail.globalChannel}`)
+
+    // Restore saved values for certain widgets, if
+    if (evt.detail.restoreValues) {
+      console.log('Restoring saved widget values')
+      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad')) {
+        if (widget.tagName.toLowerCase() == 'midi-pad') {
+          let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
+          let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
+          if (savedValX) widget.valueX = savedValX
+          if (savedValY) widget.valueY = savedValY
+        } else {
+          let savedVal = getWidgetValue(widget)
+          // By setting the value we trigger a redraw AND a send of the MIDI events
+          if (savedVal) widget.value = savedVal
+        }
+      }
+    }
+  })
+
+  // Show config dialog
+  document.body.appendChild(configDialog)
+}
+
+function setWidth() {
+  for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-button')) {
+    widget._width = widget.clientWidth
+  }
 }

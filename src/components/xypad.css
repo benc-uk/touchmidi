@@ -28,7 +28,7 @@ div {
   position: absolute;
   background-color: white;
   display: block;
-  z-index: 200;
+  z-index: 10;
   border: 0.3vmax solid white;
 }
 

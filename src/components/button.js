@@ -55,6 +55,7 @@ function eventPressed(host, evt) {
 export const Component = {
   // Private internal properties
   _pressed: false,
+  _width: 30,
 
   // MIDI properties
   chan: 1,
@@ -70,8 +71,10 @@ export const Component = {
   colour: property('#ffffff'),
   label: '__unset__',
   toggle: false,
+  labelScale: 1,
+  grow: 1,
 
-  render: ({ label, colour, _pressed, chan, cc, nrpn, note }) => {
+  render: ({ label, colour, _pressed, chan, cc, nrpn, note, _width, labelScale, grow }) => {
     const bg = _pressed ? `${darkenColour(colour)}` : 'var(--bg)'
 
     // Default label is to show the value
@@ -81,12 +84,17 @@ export const Component = {
       else if (nrpn) label = nrpn
     }
 
-    const newStyle = `button {
+    const newStyle = `
+    :host {
+      flex-grow: ${grow}
+    }
+    button {
       background-color: ${bg};
       color: ${colour};
       border-color: ${colour};
+      font-size: ${_width * 0.4 * labelScale}px !important;
     }`
-
+    //${_width * 0.1 * labelScale}
     return html`<button
       onmouseup="${eventReleased}"
       ontouchend="${eventReleased}"

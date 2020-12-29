@@ -12,6 +12,7 @@ import css from './xypad.css'
 export const Component = {
   // Private internal properties
   _previousPos: null,
+  _width: 30,
   _update: {
     observe: (host, update, lastValue) => {
       if (update.restoreValue) {
@@ -48,9 +49,11 @@ export const Component = {
   // Display & UX properties
   colour: property('#ffffff'),
   label: '__unset__',
+  labelScale: 1,
+  grow: 1,
 
-  render: ({ valueX, valueY, colour, label, min, max, ccX, ccY, chan, nrpn }) => {
-    // Save values
+  render: ({ valueX, valueY, colour, label, min, max, ccX, ccY, chan, nrpn, _width, labelScale, grow }) => {
+    // This widget saves state, in two variables
     saveWidgetValue('midi-pad', `${ccX}${chan}${nrpn}X`, valueX)
     saveWidgetValue('midi-pad', `${ccY}${chan}${nrpn}Y`, valueY)
 
@@ -66,9 +69,16 @@ export const Component = {
     }
 
     // We use some CSS tricks to draw the value as a percentage
-    const newStyle = `div {
+    const newStyle = `
+    :host {
+      flex-grow: ${grow}
+    }
+    div {
       color: ${colour};
       border-color: ${colour};
+    }
+    #label {
+      font-size: ${_width * 0.4 * labelScale}px;
     }
     #marker {
       background-color: ${darkenColour(colour)};
@@ -79,6 +89,7 @@ export const Component = {
 
     // Handle MIDI actions, might be CC or NRPN
     if (ccX > 0 && ccY > 0) {
+      console.log('p send')
       midi.sendCC(ccX, chan, valueX)
       midi.sendCC(ccY, chan, valueY)
     }

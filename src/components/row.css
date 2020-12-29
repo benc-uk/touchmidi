@@ -8,4 +8,5 @@ div {
   display: flex;
   flex-direction: row;
   flex: 1;
+  border-radius: var(--b-radius);
 }

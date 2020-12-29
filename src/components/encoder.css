@@ -21,7 +21,7 @@ div {
   position: relative;
 }
 
-.label {
+#label {
   font-size: 5vmin;
   position: absolute;
   z-index: 40;

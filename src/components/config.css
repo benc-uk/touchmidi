@@ -9,7 +9,7 @@
   transform: translate(-50%, -50%);
   z-index: 100;
   background-color: var(--bg);
-  width: 90%;
+  width: 80%;
   color: #dddddd;
 }
 
@@ -18,19 +18,30 @@
   flex-direction: column;
 }
 
+@media (orientation: landscape) {
+  #container {
+    flex-direction: row;
+  }
+}
+
 .box {
   flex: 1;
   margin: 0.5rem;
-  font-size: min(6vw, 2rem);
+  font-size: min(6vw, 1.5rem);
+}
+@media (orientation: landscape) {
+  #container {
+    flex-direction: row;
+  }
 }
 
 label {
-  font-size: min(5vw, 1.8rem);
+  font-size: min(5vw, 1.3rem);
 }
 
 INPUT[type='checkbox'] {
-  width: min(5vw, 1.8rem);
-  height: min(5vw, 1.8rem);
+  width: min(5vw, 1.3rem);
+  height: min(5vw, 1.3rem);
   border-radius: var(--b-radius);
 }
 
@@ -38,21 +49,15 @@ select {
   scrollbar-width: none;
   background-color: var(--bg);
   color: #bbbbbb;
-  font-size: min(6vw, 2rem);
+  font-size: min(5vw, 1.3rem);
   width: 100%;
   overflow-y: auto;
   border: var(--b-width) solid;
   border-color: #222222;
   border-radius: var(--b-radius);
-  height: 80%;
   margin: 0.2rem;
   outline: none;
   font-family: var(--font);
-}
-
-#channelBox button {
-  width: 4rem;
-  margin: 0.2rem;
 }
 
 #start {
@@ -60,6 +65,7 @@ select {
   border-radius: var(--b-radius);
   background-color: var(--bg);
   font-size: 2rem;
+  font-family: var(--font);
   margin-top: 1rem;
   width: 100%;
   background-color: darkgreen;
