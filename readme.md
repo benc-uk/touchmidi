@@ -57,25 +57,25 @@ There are a range of controls available
 
 ## Slider
 
-<img src="./docs/img/slider.png" style="width:300px">
+<img src="./docs/img/slider.png" width="300">
 
 A slider represents a fader type control as seen on a mixer, sliders can send MIDI CC and NRPN values.
 
 ## Encoder
 
-<img src="./docs/img/encoder.png" style="width:300px">
+<img src="./docs/img/encoder.png" width="300">
 
 An encoder represents a rotating knob control as seen on many synths and music devices, encoders can send MIDI CC and NRPN values. They are very similar to sliders in function but presented in a more compact form.
 
 ## Button
 
-<img src="./docs/img/button.png" style="width:150px"> <img src="./docs/img/toggle.png" style="width:150px">
+<img src="./docs/img/button.png" width="150"> <img src="./docs/img/toggle.png" width="150">
 
 A button can fulfil a range of roles, it can trigger MIDI notes, as well as send fixed CC, NRPN values. Buttons can also be set to toggle on & off and send different values when released.
 
 ## XY Pad
 
-<img src="./docs/img/pad.png" style="width:300px">
+<img src="./docs/img/pad.png" width="300">
 
 XY pads are similar to a sliders but work in two dimensions, so a pad can control a pair of CC values. A common use is to set a pad to modify the filter cutoff and resonance (e.g. MIDI CC 71 and 74)
 
