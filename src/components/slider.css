@@ -16,6 +16,5 @@ div {
   line-height: 0.9em;
   cursor: pointer;
   overflow: hidden;
-  width: 1px;
   user-select: none;
 }

@@ -10,5 +10,4 @@ import { Component } from './row.js'
 // What a lovely little hack, deep clone the exported row component and change one property
 var ColumnComponent = Object.assign({}, Component)
 ColumnComponent._direction = 'column'
-
 define('group-column', ColumnComponent)

@@ -3,9 +3,9 @@
 :root {
   /* these variables are used everywhere */
   --bg: black; /* background colour */
-  --b-radius: 0.7rem; /* border radius */
+  --b-radius: 1.9vmin; /* border radius */
   --b-width: 0.3rem; /* border thickness */
-  --spacing: 0.5%; /* widget spacing */
+  --spacing: 0.3rem; /* widget spacing */
 
   --font: 'PT Sans', sans-serif; /* Consolas, 'Courier New', monospace; */
 }

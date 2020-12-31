@@ -22,14 +22,16 @@ export const Component = {
       margin: ${margin}rem;
       display: flex;
       flex-direction: ${_direction};
+
     }
     div {
       display: flex;
       flex-direction: ${_direction};
-      flex: 1;
+      flex: 1 1;
       border-radius: var(--b-radius);
       border: ${borderStyle}; 
       border-color: ${colour};
+
     }`
 
     return html`<div><slot></div>`.style(css)

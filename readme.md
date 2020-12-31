@@ -1,25 +1,32 @@
 # Touch MIDI
 
-Touch MIDI is a flexible MIDI control surface for touch based devices using HTML5.  
-The project consists of a set of custom HTML elements which allows the user to build a simple HTML page which acts as a MIDI controller. The elements represent various controls such as sliders and buttons, and can be configured to send MIDI messages.
+'Touch MIDI' is a flexible MIDI control surface for touch based devices using HTML5.  
+The project consists of a set of custom HTML elements which allows the user to build a simple HTML page which can act as a MIDI controller. The elements represent various physical controls such as sliders and buttons, and can be configured to send a range of MIDI messages.
 
-It supports a range of MIDI messages such as CC (continuous controller), notes on & off, and NRPN (non-registered parameter number).
+Currently supported MIDI messages:
 
-This ground up rewrite of my older [Touch MIDI project](https://github.com/benc-uk/touchmidi-old). It has been rewritten using web components (using Hybrids.js as a library), ES6 modules, WebPack and a much cleaner design.
+- CC (continuous controller).
+- Notes on & off with velocity.
+- NRPN (non-registered parameter number), including high resolution values
+
+An example layout showing four encoders, a button, a slider and the XY pad
+<img src="./docs/img/example.png" style="width:80%; display:block; margin: 0 auto">
+
+This is complete rewrite of an older [Touch MIDI project](https://github.com/benc-uk/touchmidi-old). It has been rewritten using web components (using Hybrids.js as a library), ES6 modules, WebPack and a much cleaner design.
 
 Core technologies:
 
 - [Web MIDI API](https://www.w3.org/TR/webmidi/)
 - [Web Components & custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-- Various modern web features: ES6 modules, SVG, ES6 DOM APIs, CSS3
+- Various modern web features: ES6 modules, inline SVG, ES6 DOM APIs, CSS3 tricks
 
 Design goals:
 
-- No backend or server required
-- Works 100% in browser (client JS)
-- Works with both and touch screen devices
-- Supports multiple touches at the same time
-- Layout HTML files can be opened and run from local `file://` URL
+- No backend or server required.
+- Works 100% in browser (Only client side JS).
+- Works with both mouse and touch screen devices.
+- Supports multiple touches at the same time, and tracks movement of each.
+- Layout HTML files can be opened and run from local `file://` URL.
 
 # Supported Browsers
 
@@ -33,7 +40,7 @@ Getting started, you'll need:
 
 - A supported browser :)
 - MIDI device attached to your machine, either directly via USB (e.g. a USB-MIDI based device) or via an audio interface or other MIDI adapter.
-- Open one of the [generic example layouts](./layouts)
+- Open one of the [supplied layouts](./layouts)
 
 Upon opening the layout HTML, a configuration dialog will be shown, which allows the setup of some MIDI & other settings:
 
@@ -46,36 +53,40 @@ Upon opening the layout HTML, a configuration dialog will be shown, which allows
 
 # Widgets / Controls
 
+There are a range of controls available
+
 ## Slider
+
+<img src="./docs/img/slider.png" style="width:300px">
+
+A slider represents a fader type control as seen on a mixer, sliders can send MIDI CC and NRPN values.
 
 ## Encoder
 
+<img src="./docs/img/encoder.png" style="width:300px">
+
+An encoder represents a rotating knob control as seen on many synths and music devices, encoders can send MIDI CC and NRPN values. They are very similar to sliders in function but presented in a more compact form.
+
 ## Button
+
+<img src="./docs/img/button.png" style="width:150px"> <img src="./docs/img/toggle.png" style="width:150px">
+
+A button can fulfil a range of roles, it can trigger MIDI notes, as well as send fixed CC, NRPN values. Buttons can also be set to toggle on & off and send different values when released.
 
 ## XY Pad
 
+<img src="./docs/img/pad.png" style="width:300px">
+
+XY pads are similar to a sliders but work in two dimensions, so a pad can control a pair of CC values. A common use is to set a pad to modify the filter cutoff and resonance (e.g. MIDI CC 71 and 74)
+
 ## Counter
+
+A counter consists of two buttons, one for incrementing and decrementing an given CC value. _Work in progress_
 
 # Known Issues
 
+- Some controls do not resize fully when resizing the browser, reloading the page can fix this.
+
 # Developer Guide
 
-## Getting Started
-
-All you need to include in the HTML is the bundled JavaScript in the HTML head, this is served from the jsDelivr CDN, e.g. `https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v1.0.0/dist/bundle.js`
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Touch Midi 2 [My Layout]</title>
-    <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v1.0.0/dist/bundle.js"></script>
-  </head>
-  <body>
-    <!-- PUT YOUR WIDGETS HERE -->
-  </body>
-</html>
-```
-
-Create an empty HTML file and paste the contents below.  
-Note. You can specify any version (see [releases](./releases)) after the @
+If you wish to create your own layout files, please refer to the [developer reference guide](./docs/guide.md)

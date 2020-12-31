@@ -68,7 +68,7 @@ export const Component = {
       label = '%v'
     }
 
-    // We use some CSS tricks to draw the value as a percentage
+    // We use some CSS tricks
     const newStyle = `
     :host {
       flex-grow: ${grow}
@@ -83,8 +83,10 @@ export const Component = {
     #marker {
       background-color: ${darkenColour(colour)};
       border-color: ${colour};
-      bottom: calc(${percentY}% - 1.5vmax);
-      left: calc(${percentX}% - 1.5vmax);
+      bottom: calc(${percentY}% - ${_width * 0.05}px);
+      left: calc(${percentX}% - ${_width * 0.05}px);
+      width: ${_width * 0.1}px;
+      height: ${_width * 0.1}px;
     }`
 
     // Handle MIDI actions, might be CC or NRPN
