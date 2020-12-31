@@ -6,7 +6,7 @@
 
 const DEBUG = true
 
-var access
+export var access
 var midiOut
 var globalChannel
 

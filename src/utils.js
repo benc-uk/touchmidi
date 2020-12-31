@@ -4,6 +4,10 @@
   Ben Coleman, Dec 2020 
 */
 
+import { config } from './main'
+
+const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+
 // =====================================================================================
 // Good old fashion math clamping function
 // =====================================================================================
@@ -42,8 +46,8 @@ export function darkenColour(colour = '', hexOpacity = '60') {
 export function saveWidgetValue(widgetName, id, value) {
   // IMPORTANT! This prevents all widgets saving their zero values when first starting
   if (value === Number.MIN_SAFE_INTEGER) return
-
-  const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+  // Don't save anything when save/restored is disabled
+  if (!config.restoreValues) return
 
   //console.log('SETTING', `touchmidi.${filename}.${widgetName}.${id}`, value)
   localStorage.setItem(`touchmidi.${filename}.${widgetName}.${id}`, value)
@@ -53,12 +57,22 @@ export function saveWidgetValue(widgetName, id, value) {
 // Restore widget value from local storage
 // =============================================================================
 export function getWidgetValue(widget, id = '') {
-  const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
   if (!id) id = `${widget.cc}${widget.chan}${widget.nrpn}`
   const widgetName = widget.tagName.toLowerCase()
 
   //console.log('GETTING', `touchmidi.${filename}.${widgetName}.${id}`)
   return localStorage.getItem(`touchmidi.${filename}.${widgetName}.${id}`)
+}
+
+// =============================================================================
+// Remove all values for this layout file
+// =============================================================================
+export function removeStorage() {
+  for (let [key, value] of Object.entries(localStorage)) {
+    if (key.startsWith(`touchmidi.${filename}`)) {
+      localStorage.removeItem(key)
+    }
+  }
 }
 
 // =====================================================================================

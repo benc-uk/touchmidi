@@ -27,17 +27,22 @@ Although the Web MIDI API spec isn't new (it was drafted in 2015) support for it
 
 Mobile Chrome on an Android device has also been tested as working
 
-# Config
+# User Guide
 
-On loading a loyou
-
-# Getting Started
-
-What you need:
+Getting started, you'll need:
 
 - A supported browser :)
 - MIDI device attached to your machine, either directly via USB (e.g. a USB-MIDI based device) or via an audio interface or other MIDI adapter.
 - Open one of the [generic example layouts](./layouts)
+
+Upon opening the layout HTML, a configuration dialog will be shown, which allows the setup of some MIDI & other settings:
+
+- **MIDI device** - A list of all attached MIDI output devices will be shown, one must be selected before you can close the config dialog and start the layout. This setting will be remembered for this layout file (HTML filename)
+- **MIDI channel** - Layout files can be designed to support multiple MIDI channels or a single global MIDI channel. You have two choices:
+  - If a MIDI channel number is set here it will be used by _all controls_ in the layout. Pick this when controlling a single device which responds on a single channel (i.e. is mono-timbral)
+  - A special option 'Set By Layout' can be picked, which defers all channel settings to the layout HTML file, and this sets what channel is used on a _per control basis_ (the default is channel 1 if it's not specified). This allows for both multi-timbral control of a device, and multi-device control
+- **Save & Restore at Startup** - When enabled the values of certain controls (sliders, encoders and XY pads) are saved when they are changed, and reloaded at startup. In addition MIDI messages are sent at startup, sending the saved values, in order to set the device(s) to the same state as they were previously. This can act as a form of preset saving, however this feature can have some side effects, so is not enabled by default.
+- **Start Fullscreen** - When enabled the browser will switch to fullscreen mode
 
 # Widgets / Controls
 
@@ -50,6 +55,8 @@ What you need:
 ## XY Pad
 
 ## Counter
+
+# Known Issues
 
 # Developer Guide
 

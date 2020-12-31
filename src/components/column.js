@@ -4,17 +4,11 @@
   Ben Coleman, Dec 2020 
 */
 
-import { html, define } from 'hybrids'
-import css from './column.css'
+import { define } from 'hybrids'
+import { Component } from './row.js'
 
-export const Component = {
-  grow: 1,
+// What a lovely little hack, deep clone the exported row component and change one property
+var ColumnComponent = Object.assign({}, Component)
+ColumnComponent._direction = 'column'
 
-  render: ({ grow }) => {
-    const newStyle = grow ? `:host{flex: ${grow}} div{ flex: ${grow}}` : ''
-
-    return html`<div><slot></div>`.style(css, newStyle)
-  }
-}
-
-define('group-column', Component)
+define('group-column', ColumnComponent)

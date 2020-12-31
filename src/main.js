@@ -13,6 +13,7 @@ import './components/encoder.js'
 import './components/button.js'
 import './components/xypad.js'
 import './components/counter.js'
+import './components/helpers.js'
 import * as midi from './midi.js'
 import { clamp, getWidgetValue } from './utils.js'
 
@@ -23,8 +24,15 @@ const MOVE_CLAMP = 6
 const SENSITIVITY = 1
 const MOUSE_ID = 20
 
+// DOM query selectors for all widgets and widgets that save/restore values
+// TODO: Find a better way of selecting all custom elements / widgets
+const SELECTOR_ALL = 'midi-slider,midi-encoder,midi-pad,midi-button,midi-counter'
+const SELECTOR_SAVE = 'midi-slider,midi-encoder,midi-pad,midi-counter'
+
 // A global list of HTML nodes which are being updated (touched or clicked)
 let activeWidgets = []
+// Global config
+export let config = {}
 
 // =============================================================================
 // The main entry point is here, after loading the document / page
@@ -39,11 +47,15 @@ window.addEventListener('load', async () => {
     return
   }
 
+  // TODO: Disabled for now, requires a lot more work
+  // const channelNames = parseChannels()
+  // console.log(channelNames)
+
   // Start with MIDI config dialog, which needs MIDI access
   // We can bypass this (only for dev & testing really) with special `?nomidi` URL query param
   const urlParams = new URLSearchParams(window.location.search)
   const noMidi = urlParams.get('nomidi')
-  if (noMidi === null) openConfigDialog(access)
+  if (noMidi === null) openConfigDialog()
 
   // Notify widgets of their real width, used in order to scale fonts on labels
   // Tiny delay timeout prevents it not working sometimes, probably race condition with document loading
@@ -151,26 +163,30 @@ async function pageSetup() {
 // =============================================================================
 // Display the initial config setup dialog
 // =============================================================================
-function openConfigDialog(access) {
+function openConfigDialog(channelNames) {
   // Create config dialog element and pass it the MIDI access
   const configDialog = document.createElement('midi-config')
-  configDialog.midiAccess = access
+  configDialog.channelNames = channelNames
 
+  // Event handler
   // Get settings returned from config dialog (when config-done event fires)
   configDialog.addEventListener('config-done', (evt) => {
-    if (!evt.detail || !evt.detail.deviceId) {
+    // Save config globally
+    config = evt.detail
+
+    if (!config.deviceId) {
       alert('No MIDI device id returned, MIDI output device not opened!')
       return
     }
 
     // Configure MIDI with global settings
-    midi.setup(access.outputs.get(evt.detail.deviceId), evt.detail.globalChannel || 0)
-    console.log(`MIDI configured for device '${evt.detail.deviceId}' and channel: ${evt.detail.globalChannel}`)
+    midi.setup(midi.access.outputs.get(config.deviceId), config.globalChannel || 0)
+    console.log(`MIDI configured for device '${config.deviceId}' and channel: ${config.globalChannel}`)
 
-    // Restore saved values for certain widgets, if
-    if (evt.detail.restoreValues) {
+    // Restore saved values for certain widgets, if user sets restoreValues
+    if (config.restoreValues) {
       console.log('Restoring saved widget values')
-      for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-counter')) {
+      for (let widget of document.body.querySelectorAll(SELECTOR_SAVE)) {
         if (widget.tagName.toLowerCase() == 'midi-pad') {
           let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
           let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
@@ -193,8 +209,37 @@ function openConfigDialog(access) {
 // Notify all widgets of their current client width
 // =============================================================================
 function updateWidgetWidths() {
-  // TODO: Find a better way of selecting all custom elements / widgets
-  for (let widget of document.body.querySelectorAll('midi-slider,midi-encoder,midi-pad,midi-button,midi-counter')) {
+  for (let widget of document.body.querySelectorAll(SELECTOR_ALL)) {
     widget._width = widget.clientWidth
   }
+}
+
+// =============================================================================
+// Scan layout for channels and return list of named ones
+// =============================================================================
+function parseChannels() {
+  // List of all channel names we discover
+  let channelNames = []
+
+  for (let widget of document.body.querySelectorAll(SELECTOR_ALL)) {
+    if (!widget.channel || widget.channel.trim().length == 0) continue
+    const chanNum = parseInt(widget.channel)
+    if (isNaN(chanNum)) {
+      channelNames.push(widget.channel.trim())
+    } else {
+      // If we have a channel number we can set it here and not prompt the user for it
+      if (chanNum >= 1 && chanNum <= 16) {
+        widget._channelNum = chanNum
+      }
+    }
+  }
+
+  // Multi channel mode detected, return list of channel names
+  if (channelNames.length > 0) {
+    // Return list of distinct / unique channel names
+    return [...new Set(channelNames)]
+  }
+
+  // Single channel mode
+  return null
 }

@@ -5,6 +5,8 @@
 */
 
 import { html, define, dispatch } from 'hybrids'
+import * as midi from '../midi.js'
+import { removeStorage } from '../utils.js'
 import css from './config.css'
 
 function startClicked(host) {
@@ -14,19 +16,21 @@ function startClicked(host) {
   const restoreValues = host.shadowRoot.querySelector('#restoreValues').checked
   const fullScreen = host.shadowRoot.querySelector('#fullScreen').checked
 
+  // Safe guard
   if (!deviceId) {
     return
   }
 
+  // Wipe values when disabled, this allows user to reset any stored values
   if (!restoreValues) {
-    localStorage.clear()
+    removeStorage()
   }
 
-  // Save config options to local storage
+  // Save new config options back to local storage (after wipe)
   const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
   localStorage.setItem(`touchmidi.${filename}.config`, JSON.stringify({ deviceId, globalChannel, restoreValues }))
 
-  // Notify we're done
+  // Notify listeners (main.js) we're done
   dispatch(host, 'config-done', {
     detail: {
       deviceId,
@@ -44,19 +48,24 @@ function startClicked(host) {
   document.body.removeChild(host)
 }
 
+function deviceSelected(host, evt) {
+  host.shadowRoot.querySelector('#start').classList.remove('disabled')
+}
+
 const Component = {
-  midiAccess: {},
-  render: ({ midiAccess }) => {
-    // Modal darken background
+  //channelNames: [],
+
+  render: () => {
+    // Modal darken background & block layout behind it
     document.getElementById('pageMask').style.display = 'block'
 
-    if (!midiAccess) {
+    if (!midi.access) {
       alert('No MIDI access, something went wrong!\nYou should never see this error!')
       return
     }
 
     // Hang on! There's no devices!!
-    if (midiAccess.outputs.size == 0) {
+    if (midi.access.outputs.size == 0) {
       //alert('No MIDI output devices found!\nConnect a MIDI device and reload the page')
       return html` <div id="dialog">
         <div class="box" style="text-align:center">
@@ -79,27 +88,34 @@ const Component = {
       config = {
         deviceId: 'output-1',
         globalChannel: 1,
-        restoreValues: true
+        restoreValues: false
       }
     }
+
+    // We can't use any JS in the rendered HTML
+    // This is a workaround to pre-detect if device id will be selected
+    let startClass = 'disabled'
+    midi.access.outputs.forEach(function (output, id) {
+      if (id == config.deviceId) startClass = 'enabled'
+    })
 
     return html`
       <div id="dialog">
         <div id="container">
           <div class="box">
             Select MIDI Device
-            <select size="5" id="deviceList">
-              ${Array.from(midiAccess.outputs.entries()).map(
+            <select size="5" id="deviceList" onchange="${deviceSelected}">
+              ${Array.from(midi.access.outputs.entries()).map(
                 (device) => html`<option value="${device[0]}" selected="${device[0] == config.deviceId}">${device[1].name}</option>`
               )}
             </select>
             <br />
           </div>
           <div class="box">
-            MIDI Channel
+            MIDI Channels
             <select id="channel">
-              ${channels.map((chan) => html`<option value="${chan + 1}" selected="${chan == config.globalChannel - 1}">${chan + 1}</option>`)}
               <option value="0">Set By Layout</option>
+              ${channels.map((chan) => html`<option value="${chan + 1}" selected="${chan == config.globalChannel - 1}">${chan + 1}</option>`)}
             </select>
           </div>
           <div class="box">
@@ -110,7 +126,7 @@ const Component = {
             <label for="fullScreen">Start Fullscreen</label>
           </div>
         </div>
-        <button onclick="${startClicked}" id="start">Start</button>
+        <button onclick="${startClicked}" id="start" class="${startClass}">Start</button>
       </div>
     `.style(css)
   }

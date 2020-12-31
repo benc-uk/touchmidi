@@ -9,7 +9,7 @@ These are provided as demonstration of how to use the project, a reference set o
 
 ## Devices
 
-- [Roland MC-101](mc101.html)
+- [Roland MC-101](mc-101.html)
 - [Polyend Tracker](tracker.html)
 - Korg Volca Bass
 - Korg Volca Keys

@@ -1,0 +1,97 @@
+{
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "midi-button",
+      "description": "A widget that sends MIDI events when pressed or toggled on/off",
+      "attributes": [
+        { "name": "note" },
+        { "name": "cc" },
+        { "name": "value" },
+        { "name": "value-off" },
+        { "name": "nrpn" },
+        { "name": "chan" },
+        { "name": "velo" },
+        { "name": "toggle" },
+        { "name": "nrpn-hires" },
+        { "name": "colour" },
+        { "name": "label" },
+        { "name": "label-scale" },
+        { "name": "grow" }
+      ]
+    },
+    {
+      "name": "midi-slider",
+      "description": "A widget that acts like an slider or fader, sends MIDI CC or NRPN messages",
+      "attributes": [
+        { "name": "cc" },
+        { "name": "nrpn" },
+        { "name": "chan" },
+        { "name": "min" },
+        { "name": "max" },
+        { "name": "colour" },
+        { "name": "label-scale" },
+        { "name": "label" },
+        { "name": "grow" },
+        { "name": "horizontal" }
+      ]
+    },
+    {
+      "name": "midi-encoder",
+      "description": "A widget that acts like an encoder or knob, sends MIDI CC or NRPN messages",
+      "attributes": [
+        { "name": "cc" },
+        { "name": "nrpn" },
+        { "name": "chan" },
+        { "name": "min" },
+        { "name": "max" },
+        { "name": "colour" },
+        { "name": "label-scale" },
+        { "name": "label" },
+        { "name": "grow" }
+      ]
+    },
+    {
+      "name": "midi-pad",
+      "description": "A widget that acts like a 2D XY pad control, sends MIDI CC or NRPN messages",
+      "attributes": [
+        { "name": "cc-x" },
+        { "name": "cc-y" },
+        { "name": "nrpn" },
+        { "name": "chan" },
+        { "name": "min" },
+        { "name": "max" },
+        { "name": "colour" },
+        { "name": "label-scale" },
+        { "name": "label" },
+        { "name": "grow" }
+      ]
+    },
+    {
+      "name": "midi-counter",
+      "description": "A pair of buttons that increments and decrements a MIDI CC value",
+      "attributes": [
+        { "name": "cc" },
+        { "name": "chan" },
+        { "name": "min" },
+        { "name": "max" },
+        { "name": "colour" },
+        { "name": "label-scale" },
+        { "name": "label" },
+        { "name": "grow" }
+      ]
+    },
+    {
+      "name": "group-row",
+      "description": "Group widgets in a row",
+      "attributes": [{ "name": "grow" }, { "name": "margin" }, { "name": "border" }, { "name": "colour" }]
+    },
+    {
+      "name": "group-column",
+      "description": "Group widgets in a column",
+      "attributes": [{ "name": "grow" }, { "name": "margin" }, { "name": "border" }, { "name": "colour" }]
+    }
+  ],
+  "globalAttributes": [],
+  "valueSets": []
+}

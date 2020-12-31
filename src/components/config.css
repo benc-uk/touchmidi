@@ -72,3 +72,10 @@ select {
   color: white;
   border-color: #11dd11;
 }
+
+.disabled {
+  color: #444444 !important;
+  background-color: #111111 !important;
+  border-color: #666666 !important;
+  pointer-events: none !important;
+}

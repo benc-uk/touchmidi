@@ -5,28 +5,34 @@
 */
 
 import { html, define, property } from 'hybrids'
-import css from './row.css'
 
 export const Component = {
   grow: 1,
   margin: 0,
   border: false,
   colour: property('#ffffff'),
+  _direction: 'row',
 
-  render: ({ grow, margin, border, colour }) => {
+  render: ({ grow, margin, border, colour, _direction }) => {
     const borderStyle = border ? 'var(--b-width) solid' : 'none'
 
-    const newStyle = `
+    const css = `
     :host{
       flex-grow: ${grow};
       margin: ${margin}rem;
+      display: flex;
+      flex-direction: ${_direction};
     }
     div {
-      border: ${borderStyle};
+      display: flex;
+      flex-direction: ${_direction};
+      flex: 1;
+      border-radius: var(--b-radius);
+      border: ${borderStyle}; 
       border-color: ${colour};
     }`
 
-    return html`<div><slot></div>`.style(css, newStyle)
+    return html`<div><slot></div>`.style(css)
   }
 }
 
