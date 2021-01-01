@@ -3,21 +3,29 @@ name: Build & Bundle
 on:
   push:
     branches: [main]
-    paths: ['src/']
+    paths: ['src/**', '.github/**']
 
 jobs:
   bundle:
     runs-on: ubuntu-latest
+    name: Checks & Webpack
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: NPM install
         run: npm install
-      - name: Lint and format
+      - name: Run format (Prettier)
         run: npm run format-ci
-      - name: Run lint
+      - name: Run lint (ESLint)
         run: npm run lint
-      - name: Run build
+      - name: Run build (Webpack)
         run: npm run build
+      - name: Allow dist bundle in git
+        run: mv .gitignore .gitignore.backup && echo "node_modules/" > .gitignore
       - name: Update repo with build
         uses: mikeal/publish-to-github-action@master
         env:
+          BRANCH_NAME: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Restore gitignore
+        run: mv .gitignore.backup .gitignore
