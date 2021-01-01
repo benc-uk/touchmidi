@@ -2,4 +2,4 @@ remote_theme: benc-uk/theme-msdark
 title: Touch MIDI v2
 buttons:
   - text: Device Layouts
-    href: layouts
+    href: https://code.benco.io/touchmidi/layouts/
