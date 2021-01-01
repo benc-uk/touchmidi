@@ -185,7 +185,7 @@ function openConfigDialog(channelNames) {
 
     // Restore saved values for certain widgets, if user sets restoreValues
     if (config.restoreValues) {
-      console.log('Restoring saved widget values')
+      console.log('Restoring saved widget values...')
       for (let widget of document.body.querySelectorAll(SELECTOR_SAVE)) {
         if (widget.tagName.toLowerCase() == 'midi-pad') {
           let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
