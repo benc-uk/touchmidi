@@ -22,8 +22,14 @@ jobs:
         run: npm run build
       - name: Add dist bundle
         run: git add --force dist
-      - name: Update repo with build
-        uses: mikeal/publish-to-github-action@master
-        env:
-          BRANCH_NAME: latest
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: latest
+
+      # - name: Update branch 'latest' with build
+      #   uses: mikeal/publish-to-github-action@master
+      #   env:
+      #     BRANCH_NAME: latest
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
