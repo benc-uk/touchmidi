@@ -220,6 +220,7 @@ function updateWidgetWidths() {
 /*function parseChannels() {
   // List of all channel names we discover
   let channelNames = []
+  let prompt = true
 
   for (let widget of document.body.querySelectorAll(SELECTOR_ALL)) {
     if (!widget.channel || widget.channel.trim().length == 0) continue
@@ -230,9 +231,15 @@ function updateWidgetWidths() {
       // If we have a channel number we can set it here and not prompt the user for it
       if (chanNum >= 1 && chanNum <= 16) {
         widget._channelNum = chanNum
+        prompt = false
       }
     }
   }
+
+  // There are three possible outputs from this function:
+  // - Array of channel names: config dialog should prompt user for each one
+  // - Boolean (true): config dialog should prompt user single global channel
+  // - Boolean (false): Do not prompt the user for any channels
 
   // Multi channel mode detected, return list of channel names
   if (channelNames.length > 0) {
@@ -241,5 +248,5 @@ function updateWidgetWidths() {
   }
 
   // Single channel mode
-  return null
+  return prompt
 }*/
