@@ -20,12 +20,10 @@ jobs:
         run: npm run lint
       - name: Run build (Webpack)
         run: npm run build
-      - name: Allow dist bundle in git
-        run: mv .gitignore .gitignore.backup && echo "node_modules/" > .gitignore
+      - name: Add dist bundle
+        run: git add --force dist
       - name: Update repo with build
         uses: mikeal/publish-to-github-action@master
         env:
           BRANCH_NAME: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Restore gitignore
-        run: mv .gitignore.backup .gitignore
