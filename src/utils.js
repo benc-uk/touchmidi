@@ -76,7 +76,7 @@ export function getWidgetValue(widget, id = '') {
 // =============================================================================
 export function removeStorage() {
   // eslint-disable-next-line no-unused-vars
-  for (let [key, value] of Object.entries(localStorage)) {
+   for (let [key, value] of Object.entries(localStorage)) {
     if (key.startsWith(`touchmidi.${filename}`)) {
       localStorage.removeItem(key)
     }
