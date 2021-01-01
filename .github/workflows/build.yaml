@@ -21,7 +21,11 @@ jobs:
       - name: Run build (Webpack)
         run: npm run build
       - name: Add dist bundle
-        run: git add --force dist && git commit -m "CI automation $(date)"
+        run: |
+          git config --local user.email "benc.uk@gmail.com"
+          git config --local user.name "GitHub Actions"
+          git add --force dist
+          git commit -m "CI automation $(date)"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
