@@ -20,10 +20,17 @@ export function clamp(val, min, max) {
 // =====================================================================================
 export function formatLabel(input, value = '', percent = '', chan = '', cc = '', note = '') {
   let newLabel = input.replaceAll('\\n', '<br>')
-  newLabel = newLabel.replaceAll('%v', value)
-  newLabel = newLabel.replaceAll('%c', chan)
+  // This handles %v and also %v+mod and %v-mod, e.g. '%v-63' to subtract 63 from the value
+  newLabel = newLabel.replaceAll(/%v([-+]\d+)?/g, (match, modifier) => {
+    if (modifier) {
+      return value + parseInt(modifier)
+    }
+    return value
+  })
+  newLabel = newLabel.replaceAll('%h', chan)
   newLabel = newLabel.replaceAll('%t', cc)
   newLabel = newLabel.replaceAll('%n', note)
+  newLabel = newLabel.replaceAll('%a', midiNoteName(note))
   newLabel = newLabel.replaceAll('%p', percent)
   newLabel = newLabel.replaceAll('%%', '%')
   return newLabel
@@ -73,6 +80,14 @@ export function removeStorage() {
       localStorage.removeItem(key)
     }
   }
+}
+
+// =============================================================================
+// Convert a MIDI note number to a named string, e.g. 49 = 'C♯4'
+// =============================================================================
+export function midiNoteName(midiNote) {
+  let noteNames = ['C', 'C&sharp;', 'D', 'D&sharp;', 'E', 'F', 'F&sharp;', 'G', 'G&sharp;', 'A', 'A&sharp;', 'B']
+  return noteNames[midiNote % 12] + (Math.floor(midiNote / 12) - 1)
 }
 
 // =====================================================================================

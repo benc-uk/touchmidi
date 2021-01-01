@@ -17,6 +17,12 @@ function eventReleased(host, evt) {
     if (host.note > 0) {
       midi.sendNoteOff(host.note, host.chan)
     }
+    if (host.cc > 0 && host.valueOff) {
+      midi.sendCC(host.cc, host.chan, host.valueOff)
+    }
+    if (host.nrpn && host.valueOff) {
+      midi.sendNRPN(host.nrpn, host.chan, host.valueOff, host.nrpnHires)
+    }
   }
 }
 
@@ -79,7 +85,7 @@ export const Component = {
 
     // Default label is to show the value
     if (label === '__unset__') {
-      if (note > 0) label = '%n'
+      if (note > 0) label = '%a'
       else if (cc > 0) label = '%t'
       else if (nrpn) label = nrpn
     }
@@ -92,7 +98,7 @@ export const Component = {
       background-color: ${bg};
       color: ${colour};
       border-color: ${colour};
-      font-size: ${_width * 0.4 * labelScale}px !important;
+      font-size: ${_width * 0.3 * labelScale}px !important;
     }`
 
     return html`<button

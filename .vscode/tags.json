@@ -90,6 +90,16 @@
       "name": "group-column",
       "description": "Group widgets in a column",
       "attributes": [{ "name": "grow" }, { "name": "margin" }, { "name": "border" }, { "name": "colour" }]
+    },
+    {
+      "name": "midi-spacer",
+      "description": "A spacer",
+      "attributes": [{ "name": "grow" }]
+    },
+    {
+      "name": "midi-label",
+      "description": "A label",
+      "attributes": [{ "name": "grow" }]
     }
   ],
   "globalAttributes": [],

@@ -64,7 +64,7 @@ export const Component = {
     }
     #label {
       color: ${colour}; 
-      font-size:${_width * 0.3 * labelScale}px
+      font-size:${_width * 0.2 * labelScale}px
     }`
 
     return html`<div>
