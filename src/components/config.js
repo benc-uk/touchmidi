@@ -9,6 +9,8 @@ import * as midi from '../midi.js'
 import { removeStorage } from '../utils.js'
 import css from './config.css'
 
+const VERSION = '2.0.0'
+
 function startClicked(host) {
   // Get config values from HTML
   const deviceId = host.shadowRoot.querySelector('#deviceList').value
@@ -101,6 +103,7 @@ const Component = {
 
     return html`
       <div id="dialog">
+        <span id="title">Touch Midi v${VERSION} &nbsp; <a href="https://code.benco.io/touchmidi/" target="_blank">[ GitHub ]</a></span>
         <div id="container">
           <div class="box">
             Select MIDI Device

@@ -79,3 +79,15 @@ select {
   border-color: #666666 !important;
   pointer-events: none !important;
 }
+
+#title {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  color: #666666;
+}
+
+#title a {
+  color: #666666;
+  text-decoration: none;
+}

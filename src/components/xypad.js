@@ -91,7 +91,6 @@ export const Component = {
 
     // Handle MIDI actions, might be CC or NRPN
     if (ccX > 0 && ccY > 0) {
-      console.log('p send')
       midi.sendCC(ccX, chan, valueX)
       midi.sendCC(ccY, chan, valueY)
     }
