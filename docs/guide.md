@@ -21,7 +21,7 @@ Create an empty HTML file and paste the contents below.
 
 All you need to include in the HTML is the bundled JavaScript in the HTML head, this is served from the jsDelivr CDN, e.g. `https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v2/dist/bundle.js`
 
-Note. You can specify any version tag (see [releases](../releases)) after the @ or use `@main` if you're feeling brave.
+Note. You can specify any version tag (see [releases](../releases)) after the @ or use `@latest` for the version most recently created by CI build (if you're feeling brave).
 
 ## Control Reference
 
@@ -198,3 +198,24 @@ Labels can take the form of a static string, or display a dynamic value taken th
 - `%%` becomes the '%' symbol
 
 If omitted a label will fall back to showing the value or note number depending on the control
+
+# Advanced
+
+Local development notes.  
+This project's dev environment uses Node, NPM and Webpack plus some other tools.
+
+To work locally:
+
+```bash
+npm install
+```
+
+NPM scripts
+|Script Name|Purpose|
+|-|-|
+|`npm run watch`|Run webpack bundling with hot reload & dev mode|
+|`npm run build`|Create production minified bundle|
+|`npm run lint`|Run linting checks with ESLint|
+|`npm run format`|Run code format checks with Prettier|
+
+GitHub actions is setup to run a build `npm run build` and push the results to the `latest` branch. No development work should take place on this branch
