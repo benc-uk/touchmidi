@@ -131,7 +131,7 @@ export function sendProgChange(bytePair, chan = 1, progNum = 0) {
     midiOut.send([0xb0 + (channel - 1), 0x20, lsb])
     midiOut.send([0xc0 + (channel - 1), progNum])
   } catch (err) {
-    console.warn('Malformed program change number, it should be two integers separated by commas:', bytePair, val)
+    console.warn('Malformed program change number, it should be two integers separated by commas:', bytePair, progNum)
   }
 }
 

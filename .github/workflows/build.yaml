@@ -1,0 +1,23 @@
+name: Build & Bundle
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/']
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: NPM install
+        run: npm install
+      - name: Lint and format
+        run: npm run format-ci
+      - name: Run lint
+        run: npm run lint
+      - name: Run build
+        run: npm run build
+      - name: Update repo with build
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

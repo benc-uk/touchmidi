@@ -98,7 +98,7 @@ function eventMouseDown(evt) {
 function eventMouseMove(evt) {
   updateWidget(activeWidgets[MOUSE_ID], evt.screenX, evt.screenY)
 }
-function eventMouseUp(evt) {
+function eventMouseUp() {
   activeWidgets.splice(MOUSE_ID, 1)
 }
 
@@ -217,7 +217,7 @@ function updateWidgetWidths() {
 // =============================================================================
 // Scan layout for channels and return list of named ones
 // =============================================================================
-function parseChannels() {
+/*function parseChannels() {
   // List of all channel names we discover
   let channelNames = []
 
@@ -242,4 +242,4 @@ function parseChannels() {
 
   // Single channel mode
   return null
-}
+}*/

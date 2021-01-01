@@ -14,7 +14,7 @@ export const Component = {
   _previousPos: null,
   _width: 30,
   _update: {
-    observe: (host, update, lastValue) => {
+    observe: (host, update) => {
       if (update.restoreValue) {
         host.value = update.restoreValue
         return

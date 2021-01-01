@@ -6,7 +6,7 @@
 
 import { html, define, property } from 'hybrids'
 import * as midi from '../midi.js'
-import { darkenColour, formatLabel, saveWidgetValue } from '../utils.js'
+import { darkenColour, saveWidgetValue } from '../utils.js'
 import css from './counter.css'
 
 function eventPressed(host, evt) {
@@ -45,7 +45,7 @@ export const Component = {
   labelScale: 1,
   grow: 1,
 
-  render: ({ label, colour, chan, cc, _width, labelScale, grow, value }) => {
+  render: ({ colour, chan, cc, _width, labelScale, grow, value }) => {
     saveWidgetValue('midi-counter', `${cc}${chan}0`, value)
 
     const newStyle = `

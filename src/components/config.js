@@ -50,7 +50,7 @@ function startClicked(host) {
   document.body.removeChild(host)
 }
 
-function deviceSelected(host, evt) {
+function deviceSelected(host) {
   host.shadowRoot.querySelector('#start').classList.remove('disabled')
 }
 

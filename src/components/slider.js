@@ -12,7 +12,7 @@ import css from './slider.css'
 // =====================================================================================
 // Used as the observer function for widgets _update property used by sliders and encoders
 // =====================================================================================
-export function updateObserver(host, update, lastValue) {
+export function updateObserver(host, update) {
   if (update.restoreValue) {
     host.value = update.restoreValue
     return
