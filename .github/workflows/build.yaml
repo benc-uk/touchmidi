@@ -25,5 +25,5 @@ jobs:
       - name: Update repo with build
         uses: mikeal/publish-to-github-action@master
         env:
-          BRANCH_NAME: main
+          BRANCH_NAME: latest
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

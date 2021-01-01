@@ -72,7 +72,7 @@ export function getWidgetValue(widget, id = '') {
 }
 
 // =============================================================================
-// Remove all values for this layout filename
+// Remove all values for this layout file
 // =============================================================================
 export function removeStorage() {
   // eslint-disable-next-line no-unused-vars
