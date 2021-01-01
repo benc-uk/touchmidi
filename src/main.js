@@ -60,7 +60,7 @@ window.addEventListener('load', async () => {
   // Notify widgets of their real width, used in order to scale fonts on labels
   // Tiny delay timeout prevents it not working sometimes, probably race condition with document loading
   window.addEventListener('resize', updateWidgetWidths)
-  setTimeout(updateWidgetWidths, 20)
+  setTimeout(updateWidgetWidths, 200)
 
   // Why so many event listeners?! Basically to get the behaviour we need
   // Mainly to allow moving a widget once the mouse or touch moves outside it

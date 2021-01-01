@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Touch MIDI: Volca Beats</title>
+  <link rel="stylesheet" href="css/touchmidi.css">
+</head>
+
+<body onload="init()">
+  <div class="main_column" style="width:100%">
+
+    <div class="row">
+      <div class="slider" label=" Kick " midicc="1, 40" colour="#ffaa00"></div>
+      <div class="slider" label="Snare " midicc="1, 41" colour="#ffaa00"></div>
+      <div class="slider" label="Lo Tom" midicc="1, 42" colour="#ffaa00"></div>
+      <div class="slider" label="Hi Tom" midicc="1, 43" colour="#ffaa00"></div>
+      <div class="slider" label="Cl Hat" midicc="1, 44" colour="#ffaa00"></div>
+      <div class="slider" label="Op Hat" midicc="1, 45" colour="#ffaa00"></div>
+      <div class="slider" label=" Clap " midicc="1, 46" colour="#ffaa00"></div>
+      <div class="slider" label="Claves" midicc="1, 47" colour="#ffaa00"></div>
+      <div class="slider" label="Agogo " midicc="1, 48" colour="#ffaa00"></div>
+      <div class="slider" label="Crash " midicc="1, 49" colour="#ffaa00"></div>
+    </div>
+
+    <div class="row" >
+      <div class="encoder" label="Speed\nClap" midicc="1, 50" colour="#008ae6" storeid="1"></div>
+      <div class="encoder" label="Speed\nClave" midicc="1, 51" colour="#008ae6" storeid="2"></div>
+      <div class="encoder" label="Speed\nAgogo" midicc="1, 52" colour="#008ae6" storeid="3"></div>
+      <div class="encoder" label="Speed\nCrash" midicc="1, 53" colour="#008ae6" storeid="4"></div>
+    </div>
+    <div class="row">
+      <div class="encoder" label="Stutter\nTime"  midicc="1, 54" colour="#00e600" storeid="5"></div>
+      <div class="encoder" label="Stutter\nDepth" midicc="1, 55" colour="#00e600" storeid="6"></div>
+      <div class="encoder" label="Tom\nDecay"    midicc="1, 56" colour="#4dffdb"></div>
+      <div class="encoder" label="Cl Hat\nDecay" midicc="1, 57" colour="#4dffdb"></div>
+      <div class="encoder" label="Op Hat\nDecay" midicc="1, 58" colour="#4dffdb"></div>
+      <div class="encoder" label="Hat Grain"  midicc="1, 59" colour="#4dffdb"></div>
+    </div>
+
+    <div class="column">
+      <div class="row">
+        <div class="button" label=" Kick " midinote="1, 36" colour="#ff3333"></div>
+        <div class="button" label="Snare " midinote="1, 38" colour="#ff3333"></div>
+        <div class="button" label=" Clap " midinote="1, 39" colour="#ff3333"></div>
+        <div class="button" label="Cl Hat" midinote="1, 42" colour="#ff3333"></div>
+        <div class="button" label="Op Hat" midinote="1, 46" colour="#ff3333"></div>
+      </div>
+      <div class="row">
+        <div class="button" label="Lo Tom" midinote="1, 43" colour="#ff3333"></div>
+        <div class="button" label="Hi Tom" midinote="1, 50" colour="#ff3333"></div>
+        <div class="button" label="Claves" midinote="1, 75" colour="#ff3333"></div>
+        <div class="button" label="Agogo " midinote="1, 67" colour="#ff3333"></div>
+        <div class="button" label="Crash " midinote="1, 49" colour="#ff3333"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- **** Include JS libraries **** -->
+  <script src="lib/slider.js"></script>
+  <script src="lib/button.js"></script>
+  <script src="lib/encoder.js"></script>
+  <script src="lib/xypad.js"></script>
+  <script src="lib/midi.js"></script>
+  <script src="lib/touchmidi.js"></script>
+</body>
+</html>

@@ -9,9 +9,10 @@ These are provided as demonstration of how to use the project, a reference set o
 
 ## Devices
 
-- [Roland MC-101](mc-101.html)
-- [Polyend Tracker](tracker.html)
-- Korg Volca Bass
-- Korg Volca Keys
+- [Roland MC-101](./mc-101.html)
+- [Polyend Tracker](./tracker.html)
+- [Novation Circuit](./circuit.html)
+- [Korg Volca Bass](./volca-bass.html)
+- [Korg Volca Keys](./volca-keys.html)
 - Korg Volca Beats
 - Korg Volca Sample

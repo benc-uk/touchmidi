@@ -81,7 +81,7 @@ export const Component = {
       background: linear-gradient(to ${direction}, ${darkenColour(colour)} ${percent}%, var(--bg) ${percent}%);
       color: ${colour};
       border-color: ${colour};
-      font-size: ${_width * 0.6 * labelScale}px;
+      font-size: ${_width * 0.2 * labelScale}px;
     }`
 
     // Handle MIDI actions, might be CC or NRPN

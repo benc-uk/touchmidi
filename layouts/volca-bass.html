@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Touch Midi [Volca Bass]</title>
+    <script src="../dist/bundle.js"></script>
+  </head>
+  <body>
+    <group-row>
+      <group-row grow="2">
+        <midi-slider label="VCO1" cc="43" colour="#A82BE8"></midi-slider>
+        <midi-slider label="VCO2" cc="44" colour="#A82BE8"></midi-slider>
+        <midi-slider label="VCO3" cc="45" colour="#A82BE8"></midi-slider>
+      </group-row>
+
+      <group-column>
+        <midi-encoder label="Attack" cc="46" colour="lime" label-scale="0.8"></midi-encoder>
+        <midi-encoder label="Dec/Rel" cc="47" colour="lime" label-scale="0.8"></midi-encoder>
+        <midi-encoder label="EG\nCutoff" cc="48" label-scale="0.8"></midi-encoder>
+      </group-column>
+
+      <group-column>
+        <midi-encoder label="Octave" cc="40" label-scale="0.8"></midi-encoder>
+        <midi-encoder label="LFO Rte" cc="41" colour="gold" label-scale="0.8"></midi-encoder>
+        <midi-encoder label="LFO Int" cc="42" colour="gold" label-scale="0.8"></midi-encoder>
+      </group-column>
+
+      <group-column>
+        <midi-encoder label="Slide" cc="5" label-scale="0.8"></midi-encoder>
+        <midi-encoder label="Exprs" cc="11" label-scale="0.8"></midi-encoder>
+        <midi-encoder label="Gate" cc="49" label-scale="0.8"></midi-encoder>
+      </group-column>
+    </group-row>
+
+    <group-column grow="2">
+      <group-row>
+        <midi-spacer></midi-spacer>
+        <midi-button note="49" colour="#0022FF"></midi-button>
+        <midi-button note="51" colour="#0022FF"></midi-button>
+        <midi-spacer></midi-spacer>
+        <midi-button note="54" colour="#0022FF"></midi-button>
+        <midi-button note="56" colour="#0022FF"></midi-button>
+        <midi-button note="58" colour="#0022FF"></midi-button>
+        <midi-spacer></midi-spacer>
+      </group-row>
+      <group-row>
+        <midi-button note="48" label="C"></midi-button>
+        <midi-button note="50" label="D"></midi-button>
+        <midi-button note="52" label="E"></midi-button>
+        <midi-button note="53" label="F"></midi-button>
+        <midi-button note="55" label="G"></midi-button>
+        <midi-button note="57" label="A"></midi-button>
+        <midi-button note="59" label="B"></midi-button>
+      </group-row>
+    </group-column>
+  </body>
+</html>

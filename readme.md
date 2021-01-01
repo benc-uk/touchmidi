@@ -12,7 +12,7 @@ Currently supported MIDI messages:
 An example layout showing four encoders, a button, a slider and the XY pad
 <img src="./docs/img/example.png" style="width:80%; display:block; margin: 0 auto">
 
-This is complete rewrite of an older [Touch MIDI project](https://github.com/benc-uk/touchmidi-old). It has been rewritten using web components (using Hybrids.js as a library), ES6 modules, WebPack and a much cleaner design.
+This is complete rewrite of an older [Touch MIDI project](https://github.com/benc-uk/touchmidi-old). It has been rewritten using web components ([using the excellent Hybrids.js as a library](https://hybrids.js.org/#/)), ES6 modules, WebPack and a much cleaner design.
 
 Core technologies:
 
@@ -50,6 +50,12 @@ Upon opening the layout HTML, a configuration dialog will be shown, which allows
   - A special option 'Set By Layout' can be picked, which defers all channel settings to the layout HTML file, and this sets what channel is used on a _per control basis_ (the default is channel 1 if it's not specified). This allows for both multi-timbral control of a device, and multi-device control
 - **Save & Restore at Startup** - When enabled the values of certain controls (sliders, encoders and XY pads) are saved when they are changed, and reloaded at startup. In addition MIDI messages are sent at startup, sending the saved values, in order to set the device(s) to the same state as they were previously. This can act as a form of preset saving, however this feature can have some side effects, so is not enabled by default.
 - **Start Fullscreen** - When enabled the browser will switch to fullscreen mode
+
+# Device Layouts
+
+A set of layouts is provided with the project. These are a demonstration of how to use the project, a reference set of working layouts, and created for my own music production use.
+
+[Device Layouts](./layouts){: .btn-blue}
 
 # Widgets / Controls
 

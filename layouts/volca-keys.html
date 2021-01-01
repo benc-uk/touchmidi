@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Touch Midi [Volca Keys]</title>
+    <script src="../dist/bundle.js"></script>
+  </head>
+  <body>
+    <group-column>
+      <group-row>
+        <group-column grow="7">
+          <midi-button label="Poly" cc="40" value="1" colour="#6644FF" label-scale="0.3"></midi-button>
+          <midi-button label="Unison" cc="40" value="30" colour="#6644FF" label-scale="0.3"></midi-button>
+          <midi-button label="Octave" cc="40" value="50" colour="#6644FF" label-scale="0.3"></midi-button>
+          <midi-button label="Fifth" cc="40" value="70" colour="#6644FF" label-scale="0.3"></midi-button>
+          <midi-button label="Unison Ring" cc="40" value="99" colour="#6644FF" label-scale="0.3"></midi-button>
+          <midi-button label="Poly Ring" cc="40" value="127" colour="#6644FF" label-scale="0.3"></midi-button>
+        </group-column>
+
+        <group-column>
+          <midi-encoder label="Octave\n%v" cc="41" colour="#999999"></midi-encoder>
+          <midi-encoder label="Express\n%v" cc="11" colour="#999999"></midi-encoder>
+        </group-column>
+
+        <group-column>
+          <midi-encoder label="Delay\nTime\n%v" cc="52" colour="#FF002E"></midi-encoder>
+          <midi-encoder label="Delay\nFdbk\n%v" cc="53" colour="#FF002E"></midi-encoder>
+        </group-column>
+
+        <group-column>
+          <midi-encoder label="Detune\n%v" cc="42" label-scale="0.6"></midi-encoder>
+          <midi-encoder label="Porta\n%v" cc="5" label-scale="0.6"></midi-encoder>
+          <midi-encoder label="Env\nPitch\n%v" cc="43" label-scale="0.6" colour="#962eff"></midi-encoder>
+        </group-column>
+
+        <group-column>
+          <midi-encoder label="Cutoff\n%v" cc="44" label-scale="0.6" colour="gold"></midi-encoder>
+          <midi-encoder label="Peak\n%v" cc="127" label-scale="0.6" colour="gold"></midi-encoder>
+          <midi-encoder label="Env\nFilter\n%v" cc="45" label-scale="0.6" colour="#962eff"></midi-encoder>
+        </group-column>
+
+        <group-column>
+          <midi-encoder label="LFO\nRate\n%v" cc="46" label-scale="0.6" colour="lime"></midi-encoder>
+          <midi-encoder label="LFO\nPtch Mod\n%v" cc="47" label-scale="0.6" colour="lime"></midi-encoder>
+          <midi-encoder label="LFO\nFilt Mod\n%v" cc="48" label-scale="0.6" colour="lime"></midi-encoder>
+        </group-column>
+      </group-row>
+
+      <group-row>
+        <!-- second row -->
+        <group-row>
+          <!-- ADSR -->
+          <midi-slider label="Attack\n%v" cc="49" colour="#ff3300" label-scale="0.5"></midi-slider>
+          <midi-slider label="Sustain\n%v" cc="51" colour="#ff3300" label-scale="0.5"></midi-slider>
+          <midi-slider label="Decay\n%v" cc="50" colour="#ff3300" label-scale="0.5"></midi-slider>
+        </group-row>
+        <!-- One octave keyboard -->
+        <group-column grow="3">
+          <group-row>
+            <midi-spacer></midi-spacer>
+            <midi-button note="49" colour="#0022FF"></midi-button>
+            <midi-button note="51" colour="#0022FF"></midi-button>
+            <midi-spacer></midi-spacer>
+            <midi-button note="54" colour="#0022FF"></midi-button>
+            <midi-button note="56" colour="#0022FF"></midi-button>
+            <midi-button note="58" colour="#0022FF"></midi-button>
+            <midi-spacer></midi-spacer>
+          </group-row>
+          <group-row>
+            <midi-button note="48" label="C"></midi-button>
+            <midi-button note="50" label="D"></midi-button>
+            <midi-button note="52" label="E"></midi-button>
+            <midi-button note="53" label="F"></midi-button>
+            <midi-button note="55" label="G"></midi-button>
+            <midi-button note="57" label="A"></midi-button>
+            <midi-button note="59" label="B"></midi-button>
+          </group-row>
+        </group-column>
+      </group-row>
+    </group-column>
+  </body>
+</html>

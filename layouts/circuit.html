@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Touch Midi [Novation Circuit]</title>
+    <script src="../dist/bundle.js"></script>
+  </head>
+  <body>
+    <group-row>
+      <midi-slider label="Synth 1" chan="16" cc="12" colour="#FB1CF3"></midi-slider>
+      <midi-slider label="Synth 2" chan="16" cc="14" colour="#14E528"></midi-slider>
+      <midi-slider label="Drum 1" chan="10" cc="12" colour="#FF7E00"></midi-slider>
+      <midi-slider label="Drum 2" chan="10" cc="23" colour="#FF7E00"></midi-slider>
+      <midi-slider label="Drum 3" chan="10" cc="45" colour="#FFF000"></midi-slider>
+      <midi-slider label="Drum 4" chan="10" cc="53" colour="#FFF000"></midi-slider>
+      <midi-pad chan="16" cc-x="74" cc-y="71" label-scale="0.4" label="Filter\n%v" colour="magenta" grow="5"></midi-pad>
+    </group-row>
+    <group-row>
+      <midi-encoder label="Macro1" chan="1" cc="80" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro2" chan="1" cc="81" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro3" chan="1" cc="82" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro4" chan="1" cc="83" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro5" chan="1" cc="84" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro6" chan="1" cc="85" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro7" chan="1" cc="86" colour="#FB1CF3"></midi-encoder>
+      <midi-encoder label="Macro8" chan="1" cc="87" colour="#FB1CF3"></midi-encoder>
+    </group-row>
+    <group-row>
+      <midi-encoder label="Macro1" chan="2" cc="80" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro2" chan="2" cc="81" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro3" chan="2" cc="82" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro4" chan="2" cc="83" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro5" chan="2" cc="84" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro6" chan="2" cc="85" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro7" chan="2" cc="86" colour="#14E528"></midi-encoder>
+      <midi-encoder label="Macro8" chan="2" cc="87" colour="#14E528"></midi-encoder>
+    </group-row>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Touch MIDI: Volca Sample</title>
+  <link rel="stylesheet" href="css/touchmidi.css">
+</head>
+
+<body onload="init()">
+
+  <div class="main_column" style="width:100%">
+
+    <div class="row"> <!-- PART 1 -->
+      <div class="button toggle" label="M" midicc="1, 7, 0, 127" colour="#00FF00"></div>
+      <div class="encoder" label="Lv" midicc="1, 7" colour="#00FF00"></div>
+      <div class="encoder" label="Pn" midicc="1, 10" colour="#00FF00"></div>
+      <div class="encoder" label="St" midicc="1, 40" colour="#00FF00"></div>
+      <div class="encoder" label="Ln" midicc="1, 41" colour="#00FF00"></div>
+      <div class="encoder" label="Hc" midicc="1, 42" colour="#00FF00"></div>
+      <div class="encoder" label="Sp" midicc="1, 43" colour="#00FF00"></div>
+      <div class="encoder" label="Pi" midicc="1, 44" colour="#00FF00"></div>
+      <div class="encoder" label="Pa" midicc="1, 45" colour="#00FF00"></div>
+      <div class="encoder" label="Pd" midicc="1, 46" colour="#00FF00"></div>
+      <div class="encoder" label="Aa" midicc="1, 47" colour="#00FF00"></div>
+      <div class="encoder" label="Ad" midicc="1, 48" colour="#00FF00"></div>
+    </div>
+    <div class="row"> <!-- PART 2 -->
+      <div class="button toggle" label="M" midicc="2, 7, 0, 127" colour="#00FFFF"></div>
+      <div class="encoder" label="Lv" midicc="2, 7" colour="#00FFFF"></div>
+      <div class="encoder" label="Pn" midicc="2, 10" colour="#00FFFF"></div>
+      <div class="encoder" label="St" midicc="2, 40" colour="#00FFFF"></div>
+      <div class="encoder" label="Ln" midicc="2, 41" colour="#00FFFF"></div>
+      <div class="encoder" label="Hc" midicc="2, 42" colour="#00FFFF"></div>
+      <div class="encoder" label="Sp" midicc="2, 43" colour="#00FFFF"></div>
+      <div class="encoder" label="Pi" midicc="2, 44" colour="#00FFFF"></div>
+      <div class="encoder" label="Pa" midicc="2, 45" colour="#00FFFF"></div>
+      <div class="encoder" label="Pd" midicc="2, 46" colour="#00FFFF"></div>
+      <div class="encoder" label="Aa" midicc="2, 47" colour="#00FFFF"></div>
+      <div class="encoder" label="Ad" midicc="2, 48" colour="#00FFFF"></div>
+    </div>
+    <div class="row"> <!-- PART 3 -->
+      <div class="button toggle" label="M" midicc="3, 7, 0, 127" colour="#FF0000"></div>
+      <div class="encoder" label="Lv" midicc="3, 7" colour="#FF0000"></div>
+      <div class="encoder" label="Pn" midicc="3, 10" colour="#FF0000"></div>
+      <div class="encoder" label="St" midicc="3, 40" colour="#FF0000"></div>
+      <div class="encoder" label="Ln" midicc="3, 41" colour="#FF0000"></div>
+      <div class="encoder" label="Hc" midicc="3, 42" colour="#FF0000"></div>
+      <div class="encoder" label="Sp" midicc="3, 43" colour="#FF0000"></div>
+      <div class="encoder" label="Pi" midicc="3, 44" colour="#FF0000"></div>
+      <div class="encoder" label="Pa" midicc="3, 45" colour="#FF0000"></div>
+      <div class="encoder" label="Pd" midicc="3, 46" colour="#FF0000"></div>
+      <div class="encoder" label="Aa" midicc="3, 47" colour="#FF0000"></div>
+      <div class="encoder" label="Ad" midicc="3, 48" colour="#FF0000"></div>
+    </div>
+    <div class="row"> <!-- PART 4 -->
+      <div class="button toggle" label="M" midicc="4, 7, 0, 127" colour="#FF00FF"></div>
+      <div class="encoder" label="Lv" midicc="4, 7" colour="#FF00FF"></div>
+      <div class="encoder" label="Pn" midicc="4, 10" colour="#FF00FF"></div>
+      <div class="encoder" label="St" midicc="4, 40" colour="#FF00FF"></div>
+      <div class="encoder" label="Ln" midicc="4, 41" colour="#FF00FF"></div>
+      <div class="encoder" label="Hc" midicc="4, 42" colour="#FF00FF"></div>
+      <div class="encoder" label="Sp" midicc="4, 43" colour="#FF00FF"></div>
+      <div class="encoder" label="Pi" midicc="4, 44" colour="#FF00FF"></div>
+      <div class="encoder" label="Pa" midicc="4, 45" colour="#FF00FF"></div>
+      <div class="encoder" label="Pd" midicc="4, 46" colour="#FF00FF"></div>
+      <div class="encoder" label="Aa" midicc="4, 47" colour="#FF00FF"></div>
+      <div class="encoder" label="Ad" midicc="4, 48" colour="#FF00FF"></div>
+    </div>
+    <div class="row"> <!-- PART 5 -->
+      <div class="button toggle" label="M" midicc="5, 7, 0, 127" colour="#EEEEEE"></div>
+      <div class="encoder" label="Lv" midicc="5, 7" colour="#EEEEEE"></div>
+      <div class="encoder" label="Pn" midicc="5, 10" colour="#EEEEEE"></div>
+      <div class="encoder" label="St" midicc="5, 40" colour="#EEEEEE"></div>
+      <div class="encoder" label="Ln" midicc="5, 41" colour="#EEEEEE"></div>
+      <div class="encoder" label="Hc" midicc="5, 42" colour="#EEEEEE"></div>
+      <div class="encoder" label="Sp" midicc="5, 43" colour="#EEEEEE"></div>
+      <div class="encoder" label="Pi" midicc="5, 44" colour="#EEEEEE"></div>
+      <div class="encoder" label="Pa" midicc="5, 45" colour="#EEEEEE"></div>
+      <div class="encoder" label="Pd" midicc="5, 46" colour="#EEEEEE"></div>
+      <div class="encoder" label="Aa" midicc="5, 47" colour="#EEEEEE"></div>
+      <div class="encoder" label="Ad" midicc="5, 48" colour="#EEEEEE"></div>
+    </div>
+    <div class="row"> <!-- PART 6 -->
+      <div class="button toggle" label="M" midicc="6, 7, 0, 127" colour="#BBFF00"></div>
+      <div class="encoder" label="Lv" midicc="6, 7" colour="#BBFF00"></div>
+      <div class="encoder" label="Pn" midicc="6, 10" colour="#BBFF00"></div>
+      <div class="encoder" label="St" midicc="6, 40" colour="#BBFF00"></div>
+      <div class="encoder" label="Ln" midicc="6, 41" colour="#BBFF00"></div>
+      <div class="encoder" label="Hc" midicc="6, 42" colour="#BBFF00"></div>
+      <div class="encoder" label="Sp" midicc="6, 43" colour="#BBFF00"></div>
+      <div class="encoder" label="Pi" midicc="6, 44" colour="#BBFF00"></div>
+      <div class="encoder" label="Pa" midicc="6, 45" colour="#BBFF00"></div>
+      <div class="encoder" label="Pd" midicc="6, 46" colour="#BBFF00"></div>
+      <div class="encoder" label="Aa" midicc="6, 47" colour="#BBFF00"></div>
+      <div class="encoder" label="Ad" midicc="6, 48" colour="#BBFF00"></div>
+    </div>
+    <div class="row"> <!-- PART 7 -->
+      <div class="button toggle" label="M" midicc="7, 7, 0, 127" colour="#5555FF"></div>
+      <div class="encoder" label="Lv" midicc="7, 7" colour="#5555FF"></div>
+      <div class="encoder" label="Pn" midicc="7, 10" colour="#5555FF"></div>
+      <div class="encoder" label="St" midicc="7, 40" colour="#5555FF"></div>
+      <div class="encoder" label="Ln" midicc="7, 41" colour="#5555FF"></div>
+      <div class="encoder" label="Hc" midicc="7, 42" colour="#5555FF"></div>
+      <div class="encoder" label="Sp" midicc="7, 43" colour="#5555FF"></div>
+      <div class="encoder" label="Pi" midicc="7, 44" colour="#5555FF"></div>
+      <div class="encoder" label="Pa" midicc="7, 45" colour="#5555FF"></div>
+      <div class="encoder" label="Pd" midicc="7, 46" colour="#5555FF"></div>
+      <div class="encoder" label="Aa" midicc="7, 47" colour="#5555FF"></div>
+      <div class="encoder" label="Ad" midicc="7, 48" colour="#5555FF"></div>
+    </div>
+    <div class="row"> <!-- PART 8 -->
+      <div class="button toggle" label="M" midicc="8, 7, 0, 127" colour="#FFA500"></div>
+      <div class="encoder" label="Lv" midicc="8, 7" colour="#FFA500"></div>
+      <div class="encoder" label="Pn" midicc="8, 10" colour="#FFA500"></div>
+      <div class="encoder" label="St" midicc="8, 40" colour="#FFA500"></div>
+      <div class="encoder" label="Ln" midicc="8, 41" colour="#FFA500"></div>
+      <div class="encoder" label="Hc" midicc="8, 42" colour="#FFA500"></div>
+      <div class="encoder" label="Sp" midicc="8, 43" colour="#FFA500"></div>
+      <div class="encoder" label="Pi" midicc="8, 44" colour="#FFA500"></div>
+      <div class="encoder" label="Pa" midicc="8, 45" colour="#FFA500"></div>
+      <div class="encoder" label="Pd" midicc="8, 46" colour="#FFA500"></div>
+      <div class="encoder" label="Aa" midicc="8, 47" colour="#FFA500"></div>
+      <div class="encoder" label="Ad" midicc="8, 48" colour="#FFA500"></div>
+    </div>
+    <div class="row"> <!-- PART 9 -->
+      <div class="button toggle" label="M" midicc="9, 7, 0, 127" colour="#82CAFF"></div>
+      <div class="encoder" label="Lv" midicc="9, 7" colour="#82CAFF"></div>
+      <div class="encoder" label="Pn" midicc="9, 10" colour="#82CAFF"></div>
+      <div class="encoder" label="St" midicc="9, 40" colour="#82CAFF"></div>
+      <div class="encoder" label="Ln" midicc="9, 41" colour="#82CAFF"></div>
+      <div class="encoder" label="Hc" midicc="9, 42" colour="#82CAFF"></div>
+      <div class="encoder" label="Sp" midicc="9, 43" colour="#82CAFF"></div>
+      <div class="encoder" label="Pi" midicc="9, 44" colour="#82CAFF"></div>
+      <div class="encoder" label="Pa" midicc="9, 45" colour="#82CAFF"></div>
+      <div class="encoder" label="Pd" midicc="9, 46" colour="#82CAFF"></div>
+      <div class="encoder" label="Aa" midicc="9, 47" colour="#82CAFF"></div>
+      <div class="encoder" label="Ad" midicc="9, 48" colour="#82CAFF"></div>
+    </div>
+    <div class="row"> <!-- PART 10 -->
+      <div class="button toggle" label="M" midicc="10, 7, 0, 127" colour="#9172EC"></div>
+      <div class="encoder" label="Lv" midicc="10, 7" colour="#9172EC"></div>
+      <div class="encoder" label="Pn" midicc="10, 10" colour="#9172EC"></div>
+      <div class="encoder" label="St" midicc="10, 40" colour="#9172EC"></div>
+      <div class="encoder" label="Ln" midicc="10, 41" colour="#9172EC"></div>
+      <div class="encoder" label="Hc" midicc="10, 42" colour="#9172EC"></div>
+      <div class="encoder" label="Sp" midicc="10, 43" colour="#9172EC"></div>
+      <div class="encoder" label="Pi" midicc="10, 44" colour="#9172EC"></div>
+      <div class="encoder" label="Pa" midicc="10, 45" colour="#9172EC"></div>
+      <div class="encoder" label="Pd" midicc="10, 46" colour="#9172EC"></div>
+      <div class="encoder" label="Aa" midicc="10, 47" colour="#9172EC"></div>
+      <div class="encoder" label="Ad" midicc="10, 48" colour="#9172EC"></div>
+    </div>
+
+  </div>
+
+  <!-- **** Include JS libraries **** -->
+  <script src="lib/slider.js"></script>
+  <script src="lib/button.js"></script>
+  <script src="lib/encoder.js"></script>
+  <script src="lib/xypad.js"></script>
+  <script src="lib/midi.js"></script>
+  <script src="lib/touchmidi.js"></script>
+</body>
+</html>

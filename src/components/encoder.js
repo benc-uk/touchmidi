@@ -71,20 +71,20 @@ export const Component = {
       <svg viewBox="0 0 36 36">
         <path
           d="M18 2.0
-    a 16 16 0 0 1 0 32
-    a 16 16 0 0 1 0 -32"
+    a 1 1 0 0 1 0 32
+    a 1 1 0 0 1 0 -32"
           fill="none"
           stroke="${colour}"
           stroke-opacity="0.3"
-          stroke-width="0.25rem"
+          stroke-width="0.1rem"
           stroke-dasharray="75, 100"
           transform="rotate(226 18 18)"
           stroke-linecap="round"
         />
         <path
           d="M18 2.0
-    a 16 16 0 0 1 0 32
-    a 16 16 0 0 1 0 -32"
+    a 1 1 0 0 1 0 32
+    a 1 1 0 0 1 0 -32"
           fill="none"
           stroke="${colour}"
           stroke-width="0.25rem"
