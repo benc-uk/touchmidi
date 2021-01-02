@@ -1,81 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Touch Midi [MC-101]</title>
-    <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v2/dist/bundle.js"></script>
-  </head>
-  <body>
-    <group-row>
-      <group-column>
-        <!-- track 1 -->
-        <group-row margin="0.3" border colour="#333333">
-          <group-column>
-            <midi-encoder chan="1" cc="80" label="filt" colour="lime"></midi-encoder>
-            <midi-encoder chan="1" cc="81" label="mod" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-encoder chan="1" cc="82" label="fx" colour="lime"></midi-encoder>
-            <midi-encoder chan="1" cc="83" label="snd" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-slider chan="1" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
-            <midi-button chan="1" cc="7" value="0" value-off="127" label="mute" toggle colour="crimson"></midi-button>
-          </group-column>
-          <midi-pad chan="1" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3"></midi-pad>
-        </group-row>
 
-        <!-- track 2 -->
-        <group-row margin="0.3" border colour="#333333">
-          <group-column>
-            <midi-encoder chan="2" cc="80" label="filt" colour="lime"></midi-encoder>
-            <midi-encoder chan="2" cc="81" label="mod" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-encoder chan="2" cc="82" label="fx" colour="lime"></midi-encoder>
-            <midi-encoder chan="2" cc="83" label="snd" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-slider chan="2" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
-            <midi-button chan="2" cc="7" value="0" value-off="127" label="mute" toggle colour="crimson"></midi-button>
-          </group-column>
-          <midi-pad chan="2" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3"></midi-pad>
-        </group-row>
-      </group-column>
+<head>
+  <title>Touch Midi [MC-101]</title>
+  <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v2/dist/bundle.js"></script>
+</head>
 
-      <group-column>
-        <!-- track 3 -->
-        <group-row margin="0.3" border colour="#333333">
-          <group-column>
-            <midi-encoder chan="3" cc="80" label="filt" colour="lime"></midi-encoder>
-            <midi-encoder chan="3" cc="81" label="mod" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-encoder chan="3" cc="82" label="fx" colour="lime"></midi-encoder>
-            <midi-encoder chan="3" cc="83" label="snd" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-slider chan="3" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
-            <midi-button chan="3" cc="7" value="0" value-off="127" label="mute" toggle colour="crimson"></midi-button>
-          </group-column>
-          <midi-pad chan="3" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3"></midi-pad>
-        </group-row>
-        <!-- track 4 -->
-        <group-row margin="0.3" border colour="#333333">
-          <group-column>
-            <midi-encoder chan="4" cc="80" label="filt" colour="lime"></midi-encoder>
-            <midi-encoder chan="4" cc="81" label="mod" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-encoder chan="4" cc="82" label="fx" colour="lime"></midi-encoder>
-            <midi-encoder chan="4" cc="83" label="snd" colour="lime"></midi-encoder>
-          </group-column>
-          <group-column>
-            <midi-slider chan="4" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
-            <midi-button chan="4" cc="7" value="0" value-off="127" label="mute" toggle colour="crimson"></midi-button>
-          </group-column>
-          <midi-pad chan="4" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3"></midi-pad>
-        </group-row>
-      </group-column>
-    </group-row>
-  </body>
+<body>
+  <group-row>
+    <group-column>
+      <!-- track 1 -->
+      <group-row margin="0.3" border colour="#333333">
+        <group-column>
+          <midi-encoder chan="1" cc="80" label="filt\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="1" cc="81" label="mod\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-encoder chan="1" cc="82" label="fx\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="1" cc="83" label="snd\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-slider chan="1" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
+          <midi-button chan="1" cc="7" value="0" value-off="127" label="mute" toggle colour="#ff3333"></midi-button>
+        </group-column>
+        <midi-pad chan="1" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3">
+        </midi-pad>
+      </group-row>
+
+      <!-- track 2 -->
+      <group-row margin="0.3" border colour="#333333">
+        <group-column>
+          <midi-encoder chan="2" cc="80" label="filt\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="2" cc="81" label="mod\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-encoder chan="2" cc="82" label="fx\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="2" cc="83" label="snd\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-slider chan="2" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
+          <midi-button chan="2" cc="7" value="0" value-off="127" label="mute" toggle colour="#ff3333"></midi-button>
+        </group-column>
+        <midi-pad chan="2" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3">
+        </midi-pad>
+      </group-row>
+    </group-column>
+
+    <group-column>
+      <!-- track 3 -->
+      <group-row margin="0.3" border colour="#333333">
+        <group-column>
+          <midi-encoder chan="3" cc="80" label="filt\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="3" cc="81" label="mod\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-encoder chan="3" cc="82" label="fx\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="3" cc="83" label="snd\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-slider chan="3" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
+          <midi-button chan="3" cc="7" value="0" value-off="127" label="mute" toggle colour="#ff3333"></midi-button>
+        </group-column>
+        <midi-pad chan="3" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3">
+        </midi-pad>
+      </group-row>
+      <!-- track 4 -->
+      <group-row margin="0.3" border colour="#333333">
+        <group-column>
+          <midi-encoder chan="4" cc="80" label="filt\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="4" cc="81" label="mod\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-encoder chan="4" cc="82" label="fx\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+          <midi-encoder chan="4" cc="83" label="snd\n%v" colour="lime" label-scale="1.2"></midi-encoder>
+        </group-column>
+        <group-column>
+          <midi-slider chan="4" cc="7" label="vol\n%v" label-scale="1.5" grow="5"></midi-slider>
+          <midi-button chan="4" cc="7" value="0" value-off="127" label="mute" toggle colour="#ff3333"></midi-button>
+        </group-column>
+        <midi-pad chan="4" cc-x="74" cc-y="71" label-scale="0.4" label="filter\n%v" colour="magenta" grow="3">
+        </midi-pad>
+      </group-row>
+    </group-column>
+  </group-row>
+</body>
+
 </html>
