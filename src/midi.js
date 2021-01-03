@@ -19,7 +19,6 @@ export async function getAccess() {
     return access
   } catch (err) {
     console.error('MIDI getAccess failed', err)
-    //alert("Unable to get MIDI access\nYour browser doesn't support MIDI, try using Chrome or Edge")
   }
 }
 
