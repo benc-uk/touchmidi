@@ -92,7 +92,7 @@ export function midiNoteName(midiNote) {
 }
 
 // =====================================================================================
-// Looks up named HTML colours and returns hex HTML representation
+// Looks up named HTML colours and returns hex representation
 // =====================================================================================
 export function colourNameToHex(colour) {
   var colours = {
