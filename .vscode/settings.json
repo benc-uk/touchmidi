@@ -5,6 +5,5 @@
       "fileMatch": ["tags.json"],
       "url": "https://raw.githubusercontent.com/Microsoft/vscode-html-languageservice/master/docs/customData.schema.json"
     }
-  ],
-  "cSpell.diagnosticLevel": "Hint"
+  ]
 }
