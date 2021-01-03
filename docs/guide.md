@@ -77,7 +77,8 @@ Creates a button control, which can trigger MIDI messages when pressed and also 
 Attributes:
 
 - `cc` - When clicked this button sends the given `value` to this CC number, e.g. `cc="71"`
-- `nrpn` - When clicked this slider sends NRPN messages with the given `value` to the given NRPN pair, e.g. `nrpn="64,5"`
+- `nrpn` - When clicked this button sends NRPN messages with the given `value` to the given NRPN pair, e.g. `nrpn="64,5"`
+- `prog` - When clicked this button sends program change messages with the given `value` and a pair bank select messages, e.g. `prog="1,7" value="44"`
 - `note` - When clicked this button sends a MIDI note on message to this number, using the `velo` as velocity. e.g. `note="48"`.  
   When the button is released a MIDI note off message is sent.
 - `velo` - Velocity when sending notes, e.g. `velo="66"`, the default is 127.

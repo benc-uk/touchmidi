@@ -9,7 +9,7 @@ import * as midi from '../midi.js'
 import { removeStorage } from '../utils.js'
 import css from './config.css'
 
-const VERSION = '2.0.0'
+const VERSION = '2.0.1'
 
 function startClicked(host) {
   // Get config values from HTML

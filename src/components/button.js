@@ -45,6 +45,9 @@ function eventPressed(host, evt) {
     if (host.note > 0) {
       midi.sendNoteOn(host.note, host.chan, host.velo)
     }
+    if (host.prog) {
+      midi.sendProgChange(host.prog, host.chan, host.value)
+    }
   } else if (host.toggle) {
     if (host.note > 0) {
       midi.sendNoteOff(host.note, host.chan)
@@ -54,6 +57,9 @@ function eventPressed(host, evt) {
     }
     if (host.nrpn && host.valueOff) {
       midi.sendNRPN(host.nrpn, host.chan, host.valueOff, host.nrpnHires)
+    }
+    if (host.prog && host.valueOff) {
+      midi.sendProgChange(host.prog, host.chan, host.valueOff)
     }
   }
 }
@@ -72,6 +78,7 @@ export const Component = {
   valueOff: 0,
   velo: 127,
   note: -1,
+  prog: '',
 
   // Display & UX properties
   colour: property('#ffffff'),
@@ -80,7 +87,7 @@ export const Component = {
   labelScale: 1,
   grow: 1,
 
-  render: ({ label, colour, _pressed, chan, cc, nrpn, note, _width, labelScale, grow }) => {
+  render: ({ label, colour, _pressed, chan, cc, nrpn, prog, note, _width, labelScale, grow }) => {
     const bg = _pressed ? `${darkenColour(colour)}` : 'var(--bg)'
 
     // Default label is to show the value
@@ -88,6 +95,7 @@ export const Component = {
       if (note > 0) label = '%a'
       else if (cc > 0) label = '%t'
       else if (nrpn) label = nrpn
+      else if (prog) label = prog
     }
 
     const newStyle = `

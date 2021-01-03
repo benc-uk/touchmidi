@@ -92,6 +92,7 @@ export function sendNRPN(bytePair, chan = 1, val = 0, highRes = false) {
     checkValue(msb, 'NRPN MSB')
     checkChannel(channel)
 
+    // Send two messages to select which NRPN we are updating
     midiOut.send([0xb0 + (chan - 1), 0x63, msb])
     midiOut.send([0xb0 + (chan - 1), 0x62, lsb])
 
@@ -103,10 +104,12 @@ export function sendNRPN(bytePair, chan = 1, val = 0, highRes = false) {
       if (!Number.isInteger(val)) throw 'Bad value'
       const val_msb = Math.floor(val / 128)
       const val_lsb = Math.floor(val % 128)
+      // Send two messages to set both LSB and MSB of high res 14 bit value
       midiOut.send([0xb0 + (chan - 1), 0x06, val_msb])
       midiOut.send([0xb0 + (chan - 1), 0x26, val_lsb])
     } else {
       checkValue(val)
+      // Send one message (CC 6) to set value
       midiOut.send([0xb0 + (chan - 1), 0x06, val])
     }
   } catch (err) {
@@ -126,7 +129,13 @@ export function sendProgChange(bytePair, chan = 1, progNum = 0) {
     const lsb = parseInt(bytes[0].trim())
     const msb = parseInt(bytes[1].trim())
 
+    checkValue(lsb, 'Bank LSB')
+    checkValue(msb, 'Bank MSB')
+    checkChannel(channel)
+
     if (DEBUG) console.debug(`MIDI prog change - lsb:${lsb}, msb:${msb}, progNum:${progNum}, channel:${channel}`)
+
+    // Send three messages two for bank select and one for prog change
     midiOut.send([0xb0 + (channel - 1), 0x00, msb])
     midiOut.send([0xb0 + (channel - 1), 0x20, lsb])
     midiOut.send([0xc0 + (channel - 1), progNum])

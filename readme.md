@@ -7,7 +7,8 @@ Currently supported MIDI messages:
 
 - CC (continuous controller).
 - Notes on & off with velocity.
-- NRPN (non-registered parameter number), including high resolution values
+- NRPN (non-registered parameter number), including high resolution (14-bit) values
+- Program change with LSB/MSB bank select
 
 An example layout showing four encoders, a button, a slider and the XY pad
 <img src="./docs/img/example.png" style="width:80%; display:block; margin: 0 auto">
