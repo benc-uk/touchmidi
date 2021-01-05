@@ -1,7 +1,8 @@
 # Example Touch MIDI Layouts
 
-These are provided as demonstration of how to use the project, a reference set of working layouts, and for my own personal use.  
-Note. To use these layouts, viewing them from github.com will not work, try the hosted version of this page here https://code.benco.io/touchmidi/laoyouts or either clone the repo and open the HTML files locally.
+These are provided as demonstration of how to use the project, a reference set of working layouts, and for my own personal use. 
+
+Note. To use these layouts, viewing them from github.com will not work, try the hosted version of this page here https://code.benco.io/touchmidi/layouts or clone the repo and open the HTML files locally.
 
 ## Generic
 
