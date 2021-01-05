@@ -43,12 +43,14 @@ window.addEventListener('load', async () => {
   const access = await midi.getAccess()
 
   if (!access) {
-    document.body.innerHTML = `<div style="text-align: center; font-size: 150%">
-    <h1 style="color:#ee2222">Failed to get MIDI access</h1><br>This is likely because your browser doesn't support MIDI or permissions were not granted<br><br>Try again using Chrome or Edge</div>`
+    document.body.innerHTML = `<div style="text-align: center; font-size: 120%">
+    <h2 style="color:#ee2222">Failed to get MIDI access &#128559;</h2>
+    <br>This is likely because your browser doesn't support MIDI or permissions were not granted.
+    <br>Also ensure you load the page from a https:// or file:// URL origin. <br><br>Try again using Chrome or Edge</div>`
     return
   }
 
-  // Debug really
+  // Debug info and device ids
   for (let output of access.outputs.values()) {
     console.log(`MIDI device found --- deviceId: ${output.id}, name: ${output.name}`)
   }
@@ -64,7 +66,7 @@ window.addEventListener('load', async () => {
   if (noMidi === null) openConfigDialog()
 
   // Notify widgets of their real width, used in order to scale fonts on labels
-  // Tiny delay timeout prevents it not working sometimes, probably race condition with document loading
+  // Tiny delay prevents it not working sometimes, probably race condition with document loading
   window.addEventListener('resize', updateWidgetWidths)
   setTimeout(updateWidgetWidths, 200)
 
@@ -123,7 +125,8 @@ function updateWidget(widget, x, y) {
     dy = clamp(dy, -MOVE_CLAMP, MOVE_CLAMP) / SENSITIVITY
   }
 
-  // IMPORTANT This is fairly hacky as we can't expose functions on custom elements
+  // IMPORTANT This is how we notify widgets of changes
+  // The special _update property has an observer function which handles the new values
   widget._update = { dx, dy, x, y }
 }
 

@@ -105,7 +105,7 @@ const Component = {
 
     return html`
       <div id="dialog">
-        <span id="title">Touch Midi v${pkg.version} &nbsp; <a href="https://code.benco.io/touchmidi/" target="_blank">[ GitHub ]</a></span>
+        <span id="title">Touch Midi v${pkg.version} &nbsp; <a href="https://code.benco.io/touchmidi/" target="_blank">[[ GitHub ]]</a></span>
         <div id="container">
           <div class="box">
             Select MIDI Device

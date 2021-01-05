@@ -1,6 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
-// const WebpackAutoInject = require('webpack-auto-inject-version')
 
 module.exports = {
   mode: 'production',
