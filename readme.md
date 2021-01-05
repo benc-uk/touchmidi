@@ -105,8 +105,8 @@ You can bypass the MIDI configuration dialog and automatially start the layout b
 Accepted URL parameters are:
 
 - `device=<device_id>` - Set the device to use, if not provided `output-1` is used.
-- `channel=<channel_num>`- Set the channel (1 - 16) to use, if not provided channel 1 is used.
-- `restore=true|false`- If values are to be saved & restored, if not provided set to false.
+- `channel=<channel_num>` - Set the channel (1 - 16) to use, if not provided channel 1 is used. If you specify channel 0, that is the same as 'Set By Layout' mode (see above).
+- `restore=true|false` - If values are to be saved & restored, if not provided set to false.
 - `nomidi=true` - Disable the config dialog and also bypass MIDI access, useful when testing a layout on a machine without any MIDI devices attached.
 
 Examples.  
