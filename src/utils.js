@@ -51,7 +51,7 @@ export function darkenColour(colour = '', hexOpacity = '60') {
 // Save widget value to local storage
 // =============================================================================
 export function saveWidgetValue(widgetName, id, value) {
-  // IMPORTANT! This prevents all widgets saving their zero values when first starting
+  // IMPORTANT: This prevents all widgets saving their zero values when first starting
   if (value === Number.MIN_SAFE_INTEGER) return
   // Don't save anything when save/restored is disabled
   if (!config.restoreValues) return

@@ -18,7 +18,7 @@ export function updateObserver(host, update) {
     return
   }
 
-  // IMPORTANT! save x & y as previousPos
+  // IMPORTANT: save x & y as previousPos
   host._previousPos = { x: update.x, y: update.y }
 
   // Work out new value based on dx or dy
@@ -58,6 +58,9 @@ export const Component = {
   grow: 1,
 
   render: ({ value, colour, label, min, max, cc, chan, horizontal, nrpn, _width, labelScale, grow }) => {
+    // Safeguard against sending MIDI messages on first start
+    const orginalValue = value
+
     saveWidgetValue('midi-slider', `${cc}${chan}${nrpn}`, value)
 
     // Clamp to min and max
@@ -85,10 +88,10 @@ export const Component = {
     }`
 
     // Handle MIDI actions, might be CC or NRPN
-    if (cc > 0) {
+    if (cc > 0 && orginalValue > Number.MIN_SAFE_INTEGER) {
       midi.sendCC(cc, chan, value)
     }
-    if (nrpn) {
+    if (nrpn && orginalValue > Number.MIN_SAFE_INTEGER) {
       midi.sendNRPN(nrpn, chan, value, max > 127)
     }
 

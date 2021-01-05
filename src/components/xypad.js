@@ -20,7 +20,7 @@ export const Component = {
         return
       }
 
-      // IMPORTANT! save x & y as previousPos
+      // IMPORTANT: save x & y as previousPos
       host._previousPos = { x: update.x, y: update.y }
 
       // Work out new value based on dx or dy
@@ -53,6 +53,10 @@ export const Component = {
   grow: 1,
 
   render: ({ valueX, valueY, colour, label, min, max, ccX, ccY, chan, nrpn, _width, labelScale, grow }) => {
+    // Safeguard against sending MIDI messages on first start
+    const orginalValueX = valueX
+    const orginalValueY = valueY
+
     // This widget saves state, in two variables
     saveWidgetValue('midi-pad', `${ccX}${chan}${nrpn}X`, valueX)
     saveWidgetValue('midi-pad', `${ccY}${chan}${nrpn}Y`, valueY)
@@ -90,7 +94,7 @@ export const Component = {
     }`
 
     // Handle MIDI actions, might be CC or NRPN
-    if (ccX > 0 && ccY > 0) {
+    if (ccX > 0 && ccY > 0 && orginalValueX > Number.MIN_SAFE_INTEGER && orginalValueY > Number.MIN_SAFE_INTEGER) {
       midi.sendCC(ccX, chan, valueX)
       midi.sendCC(ccY, chan, valueY)
     }

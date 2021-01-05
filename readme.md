@@ -97,3 +97,26 @@ A counter consists of two buttons, one for incrementing and decrementing an give
 # Developer Guide
 
 If you wish to create your own layout files, please refer to the [developer reference guide](./docs/guide.md)
+
+# Advanced Usage
+
+You can bypass the MIDI configuration dialog and automatially start the layout by passing parameters on the URL. To bypass the dialog add any of the following parameters to the URL.
+
+Accepted URL parameters are:
+
+- `device=<device_id>` - Set the device to use, if not provided `output-1` is used.
+- `channel=<channel_num>`- Set the channel (1 - 16) to use, if not provided channel 1 is used.
+- `restore=true|false`- If values are to be saved & restored, if not provided set to false.
+- `nomidi=true` - Disable the config dialog and also bypass MIDI access, useful when testing a layout on a machine without any MIDI devices attached.
+
+Examples.  
+Start the layout example.html on the default device and channel 7  
+`file://example.html?channel=7`
+
+Start the layout example.html on the device 'output-2' and channel 3  
+`file://example.html?channel=3&device=output-2`
+
+Start the layout example.html on the device 'output-2' and channel 5, with saving enabled  
+`file://example.html?channel=5&device=output-2&restore=true`
+
+Note. Device IDs are automatically assigned by the operating system, and take the form `output-n` where n is an integer starting at 1, e.g. `output-1`, `output-2` etc. You will get a warning if the device id is not found

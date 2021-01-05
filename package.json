@@ -1,6 +1,6 @@
 {
   "name": "touchmidi",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Touch MIDI is a flexible MIDI control surface for touch based devices using HTML5",
   "scripts": {
     "build": "webpack",

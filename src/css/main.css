@@ -3,7 +3,7 @@
 :root {
   /* these variables are used everywhere */
   --bg: black; /* background colour */
-  --b-radius: 1.9vmin; /* border radius */
+  --b-radius: min(1.9vmin, 15px); /* border radius */
   --b-width: 0.3rem; /* border thickness */
   --spacing: 0.3rem; /* widget spacing */
 

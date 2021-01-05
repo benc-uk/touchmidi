@@ -35,6 +35,9 @@ export const Component = {
   grow: 1,
 
   render: ({ value, colour, label, min, max, chan, cc, nrpn, _width, labelScale, grow }) => {
+    // Safeguard against sending MIDI messages on first start
+    const orginalValue = value
+
     // This widget saves state
     saveWidgetValue('midi-encoder', `${cc}${chan}${nrpn}`, value)
 
@@ -51,10 +54,10 @@ export const Component = {
     }
 
     // Handle MIDI actions, might be CC or NRPN
-    if (cc > 0) {
+    if (cc > 0 && orginalValue > Number.MIN_SAFE_INTEGER) {
       midi.sendCC(cc, chan, value)
     }
-    if (nrpn) {
+    if (nrpn && orginalValue > Number.MIN_SAFE_INTEGER) {
       midi.sendNRPN(nrpn, chan, value, max > 127)
     }
 

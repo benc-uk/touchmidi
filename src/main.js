@@ -15,9 +15,10 @@ import './components/xypad.js'
 import './components/counter.js'
 import './components/helpers.js'
 import * as midi from './midi.js'
-import { clamp, getWidgetValue } from './utils.js'
+import { clamp, getWidgetValue, removeStorage } from './utils.js'
 
 import mainCss from './css/main.css'
+import { defaultConfig } from './components/config.js'
 
 // Global config consts
 const MOVE_CLAMP = 6
@@ -117,7 +118,7 @@ function updateWidget(widget, x, y) {
     dy = clamp(dy, -MOVE_CLAMP, MOVE_CLAMP) / SENSITIVITY
   }
 
-  // This is fairly hacky as we can't expose functions on custom elements
+  // IMPORTANT This is fairly hacky as we can't expose functions on custom elements
   widget._update = { dx, dy, x, y }
 }
 
@@ -164,6 +165,30 @@ async function pageSetup() {
 // Display the initial config setup dialog
 // =============================================================================
 function openConfigDialog(channelNames) {
+  // Auto start without config dialog, if ?start=true provided on URL
+  // Check URL query for config options, these override everything
+  const urlParams = new URLSearchParams(window.location.search)
+  if (urlParams.has('channel') || urlParams.has('device') || urlParams.has('restore')) {
+    // Get other config options from URL query params
+    config = defaultConfig
+    config.globalChannel = urlParams.has('channel') ? parseInt(urlParams.get('channel')) : 1
+    config.deviceId = urlParams.has('device') ? urlParams.get('device') : config.deviceId
+    config.restoreValues = urlParams.has('restore') ? urlParams.get('restore') === 'true' : config.restoreValues
+
+    // Wipe values when disabled, this allows user to reset any stored values
+    if (!config.restoreValues) {
+      removeStorage()
+    }
+
+    // Save new config options back to local storage (after wipe)
+    const filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+    localStorage.setItem(`touchmidi.${filename}.config`, JSON.stringify(config))
+
+    // Begin!
+    startLayout(config)
+    return
+  }
+
   // Create config dialog element and pass it the MIDI access
   const configDialog = document.createElement('midi-config')
   configDialog.channelNames = channelNames
@@ -171,40 +196,55 @@ function openConfigDialog(channelNames) {
   // Event handler
   // Get settings returned from config dialog (when config-done event fires)
   configDialog.addEventListener('config-done', (evt) => {
-    // Save config globally
-    config = evt.detail
-
-    if (!config.deviceId) {
-      alert('No MIDI device id returned, MIDI output device not opened!')
-      return
-    }
-
-    // Configure MIDI with global settings
-    midi.setup(midi.access.outputs.get(config.deviceId), config.globalChannel || 0)
-    console.log(`MIDI configured for device '${config.deviceId}' and channel: ${config.globalChannel}`)
-
-    // Restore saved values for certain widgets, if user sets restoreValues
-    if (config.restoreValues) {
-      console.log('Restoring saved widget values...')
-      for (let widget of document.body.querySelectorAll(SELECTOR_SAVE)) {
-        if (widget.tagName.toLowerCase() == 'midi-pad') {
-          let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
-          let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
-          if (savedValX) widget.valueX = savedValX
-          if (savedValY) widget.valueY = savedValY
-        } else {
-          let savedVal = getWidgetValue(widget)
-          // By setting the value we trigger a redraw AND a send of the MIDI events
-          if (savedVal) widget.value = savedVal
-        }
-      }
-    }
+    // Begin!
+    startLayout(evt.detail)
   })
 
   // Show config dialog element, by adding to the body
   document.body.appendChild(configDialog)
 }
 
+// =============================================================================
+// Start the layout with the given config
+// =============================================================================
+function startLayout(config) {
+  // Some device ID validation
+  if (!config.deviceId) {
+    alert('No MIDI device id, MIDI output will fail!')
+    return
+  }
+
+  // Only possible to provide an invalid device if auto-starting with query ?start=true
+  let validDevice = false
+  for (let outDevice of midi.access.outputs.values()) {
+    if (outDevice.id === config.deviceId) validDevice = true
+  }
+  if (!validDevice) {
+    alert(`The provided MIDI device id '${config.deviceId}' is invalid, MIDI output will fail!`)
+    return
+  }
+
+  // Configure MIDI with global settings
+  midi.setup(midi.access.outputs.get(config.deviceId), config.globalChannel || 0)
+  console.log(`MIDI configured for device '${config.deviceId}' and channel: ${config.globalChannel}`)
+
+  // Restore saved values for certain widgets, if user sets restoreValues
+  if (config.restoreValues) {
+    console.log('Restoring saved widget values...')
+    for (let widget of document.body.querySelectorAll(SELECTOR_SAVE)) {
+      if (widget.tagName.toLowerCase() == 'midi-pad') {
+        let savedValX = getWidgetValue(widget, `${widget.ccX}${widget.chan}${widget.nrpn}X`)
+        let savedValY = getWidgetValue(widget, `${widget.ccY}${widget.chan}${widget.nrpn}Y`)
+        if (savedValX) widget.valueX = savedValX
+        if (savedValY) widget.valueY = savedValY
+      } else {
+        let savedVal = getWidgetValue(widget)
+        // By setting the value we trigger a redraw AND a send of the MIDI events
+        if (savedVal) widget.value = savedVal
+      }
+    }
+  }
+}
 // =============================================================================
 // Notify all widgets of their current client width
 // =============================================================================

@@ -9,7 +9,13 @@ import * as midi from '../midi.js'
 import { removeStorage } from '../utils.js'
 import css from './config.css'
 
-const VERSION = '2.0.1'
+import pkg from '../../package.json'
+
+export let defaultConfig = {
+  deviceId: 'output-1',
+  globalChannel: 1,
+  restoreValues: false
+}
 
 function startClicked(host) {
   // Get config values from HTML
@@ -87,11 +93,7 @@ const Component = {
     if (configJSON) {
       config = JSON.parse(configJSON)
     } else {
-      config = {
-        deviceId: 'output-1',
-        globalChannel: 1,
-        restoreValues: false
-      }
+      config = defaultConfig
     }
 
     // We can't use any JS in the rendered HTML
@@ -103,7 +105,7 @@ const Component = {
 
     return html`
       <div id="dialog">
-        <span id="title">Touch Midi v${VERSION} &nbsp; <a href="https://code.benco.io/touchmidi/" target="_blank">[ GitHub ]</a></span>
+        <span id="title">Touch Midi v${pkg.version} &nbsp; <a href="https://code.benco.io/touchmidi/" target="_blank">[ GitHub ]</a></span>
         <div id="container">
           <div class="box">
             Select MIDI Device
