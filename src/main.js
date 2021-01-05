@@ -48,6 +48,11 @@ window.addEventListener('load', async () => {
     return
   }
 
+  // Debug really
+  for (let output of access.outputs.values()) {
+    console.log(`MIDI device found --- deviceId: ${output.id}, name: ${output.name}`)
+  }
+
   // TODO: Disabled for now, requires a lot more work
   // const channelNames = parseChannels()
   // console.log(channelNames)
