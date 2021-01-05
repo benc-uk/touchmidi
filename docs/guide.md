@@ -11,7 +11,7 @@ Create an empty HTML file and paste the contents below.
 <html>
   <head>
     <title>Touch Midi [My Layout]</title>
-    <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v2/dist/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi/dist/bundle.js"></script>
   </head>
   <body>
     <!-- PUT YOUR CONTROLS HERE -->
@@ -19,9 +19,9 @@ Create an empty HTML file and paste the contents below.
 </html>
 ```
 
-All you need to include in the HTML is the bundled JavaScript in the HTML head, this is served from the jsDelivr CDN, e.g. `https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v2/dist/bundle.js`
+All you need to include in the HTML is the bundled JavaScript in the HTML head, this is served from the jsDelivr CDN, e.g. `https://cdn.jsdelivr.net/gh/benc-uk/touchmidi/dist/bundle.js`
 
-Note. You can specify any version tag (see [releases](../releases)) after the @ or use `@latest` for the version most recently created by CI build (if you're feeling brave).
+Note. You can specify any version tag (see [releases](../releases)) after the touchmidi part, e.g. `touchmidi@v2` or `touchmidi@v2.1.0` or use `touchmidi@latest` for the most recent released build
 
 ## Control Reference
 
