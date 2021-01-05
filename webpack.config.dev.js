@@ -20,7 +20,6 @@ module.exports = {
         test: /\.css$/,
         use: 'raw-loader'
       }
-      // { test: /\.json$/, use: 'json-loader' }
     ]
   }
 }

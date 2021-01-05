@@ -14,9 +14,6 @@ module.exports = {
 
   module: {
     // Load CSS as raw, apparently this is what hybrids-js needs
-    rules: [
-      { test: /\.css$/, use: 'raw-loader' },
-      { test: /\.json$/, use: 'json' }
-    ]
+    rules: [{ test: /\.css$/, use: 'raw-loader' }]
   }
 }
