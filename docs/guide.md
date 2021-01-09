@@ -39,6 +39,7 @@ Attributes:
 
 - `cc` - Makes this control send CC messages to the given CC number, e.g. `cc="71"`.
 - `nrpn` - Makes this control send NRPN messages to the given NRPN pair, e.g. `nrpn="64,5"`.
+- `pitch-bend` - Makes this control send pitch bend. A valueless bool. Note. Sliders only. `<midi-slider pitch-bend>`.
 - `min` - Minimum value this control can hold, default is `min="0"`.
 - `max` - Maximum value this control can hold, default is `max="127"`.
 - `horizontal` - Switches sliders to horizontal orientation, for encoders changes the movement direction to "turn" the encoder to left-right (it's up-down by default)

@@ -76,6 +76,23 @@ export function sendCC(cc, chan = 1, val = 0) {
 }
 
 // =====================================================================================
+// Send MIDI pitch bend
+// =====================================================================================
+export function sendPitchBend(chan = 1, val = 0) {
+  if (!midiOut) return
+  const channel = globalChannel > 0 ? globalChannel : chan
+
+  checkChannel(channel)
+
+  // I have no idea if this 14 bit stuff works...
+  const val_msb = Math.floor(val / 128)
+  const val_lsb = Math.floor(val % 128)
+
+  if (DEBUG) console.debug(`MIDI pitchbend - val_msb:${val_msb}, val_lsb:${val_lsb}, channel:${channel}`)
+  midiOut.send([0xe0 + (channel - 1), val_msb, val_lsb])
+}
+
+// =====================================================================================
 // Send series of messages for a NRPN change
 // =====================================================================================
 export function sendNRPN(bytePair, chan = 1, val = 0, highRes = false) {

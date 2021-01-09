@@ -49,6 +49,7 @@ export const Component = {
   nrpn: '',
   min: 0,
   max: 127,
+  pitchBend: false,
 
   // Display & UX properties
   colour: property('#ffffff'),
@@ -57,9 +58,9 @@ export const Component = {
   labelScale: 1,
   grow: 1,
 
-  render: ({ value, colour, label, min, max, cc, chan, horizontal, nrpn, _width, labelScale, grow }) => {
+  render: ({ value, colour, label, min, max, cc, chan, horizontal, nrpn, pitchBend, _width, labelScale, grow }) => {
     // Safeguard against sending MIDI messages on first start
-    const orginalValue = value
+    const originalValue = value
 
     saveWidgetValue('midi-slider', `${cc}${chan}${nrpn}`, value)
 
@@ -88,11 +89,15 @@ export const Component = {
     }`
 
     // Handle MIDI actions, might be CC or NRPN
-    if (cc > 0 && orginalValue > Number.MIN_SAFE_INTEGER) {
+    if (cc > 0 && originalValue > Number.MIN_SAFE_INTEGER) {
       midi.sendCC(cc, chan, value)
     }
-    if (nrpn && orginalValue > Number.MIN_SAFE_INTEGER) {
+    if (nrpn && originalValue > Number.MIN_SAFE_INTEGER) {
       midi.sendNRPN(nrpn, chan, value, max > 127)
+    }
+    // Pitch bend support, not sure how useful
+    if (pitchBend) {
+      midi.sendPitchBend(chan, value)
     }
 
     return html`<div innerHTML="${formatLabel(label, value, percent, chan, cc)}"></div>`.style(css, newStyle)
