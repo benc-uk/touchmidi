@@ -54,8 +54,8 @@ export const Component = {
 
   render: ({ valueX, valueY, colour, label, min, max, ccX, ccY, chan, nrpn, _width, labelScale, grow }) => {
     // Safeguard against sending MIDI messages on first start
-    const orginalValueX = valueX
-    const orginalValueY = valueY
+    const originalValueX = valueX
+    const originalValueY = valueY
 
     // This widget saves state, in two variables
     saveWidgetValue('midi-pad', `${ccX}${chan}${nrpn}X`, valueX)
@@ -94,7 +94,7 @@ export const Component = {
     }`
 
     // Handle MIDI actions, might be CC or NRPN
-    if (ccX > 0 && ccY > 0 && orginalValueX > Number.MIN_SAFE_INTEGER && orginalValueY > Number.MIN_SAFE_INTEGER) {
+    if (ccX > 0 && ccY > 0 && originalValueX > Number.MIN_SAFE_INTEGER && originalValueY > Number.MIN_SAFE_INTEGER) {
       midi.sendCC(ccX, chan, valueX)
       midi.sendCC(ccY, chan, valueY)
     }
