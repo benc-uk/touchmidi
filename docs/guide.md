@@ -11,7 +11,7 @@ Create an empty HTML file and paste the contents below.
 <html>
   <head>
     <title>Touch Midi [My Layout]</title>
-    <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi/dist/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/benc-uk/touchmidi@v2.2.0/dist/bundle.js"></script>
   </head>
   <body>
     <!-- PUT YOUR CONTROLS HERE -->
@@ -21,7 +21,9 @@ Create an empty HTML file and paste the contents below.
 
 All you need to include in the HTML is the bundled JavaScript in the HTML head, this is served from the jsDelivr CDN, e.g. `https://cdn.jsdelivr.net/gh/benc-uk/touchmidi/dist/bundle.js`
 
-Note. You can specify any version tag (see [releases](../releases)) after the touchmidi part, e.g. `touchmidi@v2` or `touchmidi@v2.1.0` or use `touchmidi@latest` for the most recent released build
+Note. You can specify any version tag (see [releases](../releases)) after the touchmidi part, e.g. `touchmidi@v2` or `touchmidi@v2.2.0` or use `touchmidi@latest` for the most recent released build
+
+Note. Jan 2020 - There seems to be a bug with jsdelivr CDN and they cache old versions for a VERY long time, it is strongly suggested to use the full version tag, e.g. `touchmidi@v2.2.0` in order to get the correct version.
 
 ## Control Reference
 
